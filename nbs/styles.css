@@ -10,7 +10,9 @@
   margin-bottom: 0;
 }
 
-.cell-output > pre, .cell-output > .sourceCode > pre, .cell-output-stdout > pre {
+.cell-output > pre,
+.cell-output > .sourceCode > pre,
+.cell-output-stdout > pre {
   margin-left: 0.8rem;
   margin-top: 0;
   background: none;
