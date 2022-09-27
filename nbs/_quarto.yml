@@ -15,7 +15,8 @@ website:
   open-graph: true
   repo-actions: [issue]
   navbar:
-    background: light
+    title: "Fred's fast.ai cookbook"
+    background: "#fcf9ef"
     search: true
     right:
       - text: "Blog"

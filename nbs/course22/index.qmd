@@ -1,0 +1,14 @@
+---
+title: "Practical DL for Coders"
+
+subtitle: Personal notes on 2022 edition of fast.ai course
+
+listing:
+  sort: "date desc"
+  contents: "lessons"
+  sort-ui: false
+  filter-ui: false
+  categories: true
+  feed: true
+  type: default
+---
