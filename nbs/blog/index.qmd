@@ -1,0 +1,16 @@
+---
+title: "My fast.ai journey"
+
+subtitle: Learnings, ideas and commentary about all things fastai
+
+theme: sandstone
+
+listing:
+  sort: "date desc"
+  contents: "posts"
+  sort-ui: false
+  filter-ui: false
+  categories: true
+  feed: true
+  type: default
+---

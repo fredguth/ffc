@@ -2,7 +2,7 @@ project:
   output-dir: _docs
 
 website:
-  title: "Fred's fast.ai cookbook"
+  title: "ffc"
   site-url: "https://fredguth.github.io/ffc"
   description: "Fred's fast.ai cookbook"
   repo-branch: main

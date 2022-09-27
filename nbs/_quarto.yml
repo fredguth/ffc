@@ -6,14 +6,24 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
+    toc-depth: 4
 
 website:
   twitter-card: true
   open-graph: true
   repo-actions: [issue]
   navbar:
-    background: primary
+    background: light
     search: true
+    right:
+      - text: "Blog"
+        href: blog/index.qmd
+      - icon: github
+        href: "https://github.com/fredguth/ffc"
+        aria-label: Freds fastai cookbook on Github
+      - icon: twitter
+        href: https://twitter.com/fredguth
+        aria-label: fredguth at Twitter
   sidebar:
     style: floating
 
