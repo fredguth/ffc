@@ -1,6 +1,5 @@
 ---
 title: "My fast.ai journey"
-
 subtitle: Learnings, ideas and commentary about all things fastai
 
 listing:
@@ -11,4 +10,7 @@ listing:
   categories: true
   feed: true
   type: default
+page-layout: full
+title-block-banner: "#fcf9ef"
+toc-location: left
 ---

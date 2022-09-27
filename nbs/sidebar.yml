@@ -1,12 +1,21 @@
 website:
   sidebar:
     contents:
-      - section: Welcome
-        contents:
-          - index.ipynb
-      - section: Practical DL 2022
-        contents:
-          - course22/index.qmd
-      - section: Blog
+      - index.ipynb
+      - 00_core.ipynb
+      - section: blog
         contents:
           - blog/index.qmd
+          - section: posts
+            contents:
+              - blog/posts/2022-09-26.qmd
+      - section: blog
+        contents:
+          - section: posts
+            contents:
+              - section: 2022-09-27
+                contents:
+                  - blog/posts/2022-09-27/index.qmd
+      - section: course22
+        contents:
+          - course22/index.qmd

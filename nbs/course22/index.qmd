@@ -8,7 +8,6 @@ listing:
   contents: "lessons"
   sort-ui: false
   filter-ui: false
-  categories: true
-  feed: true
+  categories: false
   type: default
 ---

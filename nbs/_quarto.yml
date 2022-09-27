@@ -9,19 +9,22 @@ format:
     css: styles.css
     toc: true
     toc-depth: 4
+    page-layout: full
 
 website:
   twitter-card: true
   open-graph: true
-  repo-actions: [issue]
+  repo-actions: [edit, issue]
   navbar:
     logo: logo.png
     title: "Fred's fast.ai cookbook"
+    collapse-below: lg
     background: "#fcf9ef"
     search: true
-    right:
+    left:
       - text: "Blog"
         href: blog/index.qmd
+    right:
       - icon: github
         href: "https://github.com/fredguth/ffc"
         aria-label: Freds fastai cookbook on Github
@@ -29,6 +32,26 @@ website:
         href: https://twitter.com/fredguth
         aria-label: fredguth at Twitter
   sidebar:
-    style: floating
+    - title: "Home"
+      style: floating
+      collapse-level: 2
+      contents:
+        - section: Welcome
+          contents:
+            - index.ipynb
+        - section: Practical DL 2022
+          contents:
+            - course22/index.qmd
+    - title: "Blog"
 
-metadata-files: [nbdev.yml, sidebar.yml]
+  page-footer:
+    left: |
+      © 2022 onwards, Fred Guth
+    right:
+      - icon: twitter
+        href: https://twitter.com/fredguth
+        aria-label: Fred's Twitter
+      - icon: github
+        href: https://github.com/fredguth
+        aria-label: Fred's GitHub
+metadata-files: [nbdev.yml]
