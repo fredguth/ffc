@@ -1,5 +1,5 @@
 ---
-title: "Practical DL for Coders"
+title: "Introduction"
 
 subtitle: Personal notes on 2022 edition of fast.ai course
 

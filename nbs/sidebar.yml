@@ -4,7 +4,7 @@ website:
       - section: Welcome
         contents:
           - index.ipynb
-      - section: Course 2022
+      - section: Practical DL 2022
         contents:
           - course22/index.qmd
       - section: Blog
