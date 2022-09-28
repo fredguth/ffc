@@ -1,0 +1,49 @@
+---
+title: "Why I am writing a cookbook... and so should you"
+description: "A coding cookbook is not only an incredible learning tool, but also a gift for your future self"
+date: "2022-09-27"
+author: Fred Guth
+image: cookbook_anotation.jpg
+image-alt: "An annotated recipe from a cookbook."
+categories:
+  - learning
+  - hacks
+---
+
+The [Practical Deep Learning for Coders](https://course.fast.ai/) course has a top-down approach to teaching.  Let's not *start from the basics*, but from our goals. In the first lesson, you learn how to build a classifier that would be science fiction in 2015. Neat! Equally important, thought, is what is implicit: a requirement for a [top-down approach to learning](https://forums.fast.ai/t/learning-strategy-for-top-down-approach/66173):
+
+```{mermaid}
+flowchart LR
+  A(Watch lecture) --> B(Run lesson notebook)
+  B --> C(Reproduce results)
+  C --Different dataset--> C
+```
+:::{.column-margin  .callout-tip}
+## doc(_function_)
+While running the lesson notebook, use `doc(fn)` to access the _function_'s documentation.
+:::
+## What is a fast.ai cookbook?
+:::{#fig-halfblood}
+![](halfbloodrecipes.webp)
+
+An annotated copy of Advanced Potion-Making book belonged to Severus Snape while a Hogwarts School of Witchcraft and Wizardry student.
+:::
+- playground
+- half blood prince 
+
+### Why build a cookbook?
+
+```{mermaid}
+flowchart LR
+  A(Watch lecture) --> B(Run lesson notebook)
+  B --> C(Reproduce)
+  C --Different dataset--> C
+  C --> D(Share learnings)
+  D:::someclass
+  classDef someclass fill:#f96;
+
+```
+
+### How to build a cookbook?
+- nbdev
+

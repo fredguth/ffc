@@ -8,14 +8,9 @@ website:
           - blog/index.qmd
           - section: posts
             contents:
-              - blog/posts/2022-09-26.qmd
-      - section: blog
-        contents:
-          - section: posts
-            contents:
-              - section: 2022-09-27
+              - section: 2022-09-26
                 contents:
-                  - blog/posts/2022-09-27/index.qmd
+                  - blog/posts/2022-09-26/index.qmd
       - section: course22
         contents:
           - course22/index.qmd

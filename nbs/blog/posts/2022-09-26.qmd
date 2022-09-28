@@ -1,7 +1,0 @@
----
-title: "Getting started...once again"
-description: "Revisiting fastai's course for the 3rd time"
-date: "09/26/2022"
----
-
-Hi
