@@ -8,6 +8,7 @@ image-alt: "An annotated recipe from a cookbook."
 categories:
   - learning
   - hacks
+draft: true
 ---
 
 The [Practical Deep Learning for Coders](https://course.fast.ai/) course has a top-down approach to teaching.  Let's not *start from the basics*, but from our goals. In the first lesson, you learn how to build a classifier that would be science fiction in 2015. Neat! Equally important, thought, is what is implicit: a requirement for a [top-down approach to learning](https://forums.fast.ai/t/learning-strategy-for-top-down-approach/66173):
