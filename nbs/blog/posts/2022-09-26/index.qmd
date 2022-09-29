@@ -8,10 +8,15 @@ image-alt: "An annotated recipe from a cookbook."
 categories:
   - learning
   - hacks
-draft: true
+draft: false
 ---
 
-The [Practical Deep Learning for Coders](https://course.fast.ai/) course has a top-down approach to teaching.  Let's not *start from the basics*, but from our goals. In the first lesson, you learn how to build a classifier that would be science fiction in 2015. Neat! Equally important, thought, is what is implicit: a requirement for a [top-down approach to learning](https://forums.fast.ai/t/learning-strategy-for-top-down-approach/66173):
+The [Practical Deep Learning for Coders](https://course.fast.ai/) course has a top-down approach to teaching.  Let's **not** *start from the basics*, but from our goals. In the first lesson, you learn how to build a classifier that would be science fiction in 2015. Neat! Equally important, thought, is what is implicit: a requirement for a [top-down approach to learning](https://forums.fast.ai/t/learning-strategy-for-top-down-approach/66173):
+
+:::{.column-margin  .callout-tip}
+## doc(_function_)
+While running the lesson notebook, use `doc(fn)` to access the _function_'s documentation.
+:::
 
 ```{mermaid}
 flowchart LR
@@ -19,20 +24,31 @@ flowchart LR
   B --> C(Reproduce results)
   C --Different dataset--> C
 ```
-:::{.column-margin  .callout-tip}
-## doc(_function_)
-While running the lesson notebook, use `doc(fn)` to access the _function_'s documentation.
-:::
+
 ## What is a fast.ai cookbook?
+A cookbook is a collection of recipes. A fastai recipe is a jupyter notebook where you compile steps that you can follow to reproduce a result using the library. But you do that in a literate programming style, _ie_ you add explanations and annotations to the code.
+
+::: {.column-margin .callout-tip}
+## playground
+Many fastai cookbooks use the name `playground`. 
+:::
+There are a list of some interesting fast.ai cookbooks in Github:
+
+ - [Zachary Mueller's cookbook](https://walkwithfastai.com/)
+ - [Sylvain's cookbook](https://github.com/sgugger/Deep-Learning)
+ - [Fred's old cookbook](https://github.com/fredguth/fastai_playground)
+ - [Sunhwan's cookbook](https://github.com/sunhwan/fastai-playground)
+ - [Kechan's cookbook](https://github.com/kechan/FastaiPlayground)
+ - ~~Severus Snape's cookbook~~
+
 :::{#fig-halfblood}
 ![](halfbloodrecipes.webp)
 
-An annotated copy of Advanced Potion-Making book belonged to Severus Snape while a Hogwarts School of Witchcraft and Wizardry student.
+An annotated copy of Advanced Potion-Making book belonged to Severus Snape while a Hogwarts student.
 :::
-- playground
-- half blood prince 
 
 ### Why build a cookbook?
+ A cookbook enables reproducibility, but as important... it allows _you_ to come back to your work in a few months and understand what you did. **It is a gift for your future self.**
 
 ```{mermaid}
 flowchart LR
@@ -44,7 +60,10 @@ flowchart LR
   classDef someclass fill:#f96;
 
 ```
+Besides, when you share your learnings you need to structure your thought and that makes you check for gaps in your understanding and solidifies what you have learned.
 
 ### How to build a cookbook?
-- nbdev
+The best way to document your fastai learnings is using [nbdev](nbdev.fast.ai), which is the development tool used to build and document `fast.ai` lib itself. That is how this `Fred's fast.ai cookbook` was made. You can just fork [my repo](https://github.com/fredguth/ffc) or follow the [nbdev tutorial](https://nbdev.fast.ai/tutorials/tutorial.html) (that is what I did).
+
+
 

@@ -11,6 +11,3 @@ website:
               - section: 2022-09-26
                 contents:
                   - blog/posts/2022-09-26/index.qmd
-      - section: course22
-        contents:
-          - course22/index.qmd
