@@ -3,6 +3,7 @@ website:
     contents:
       - index.ipynb
       - 00_core.ipynb
+      - 01_binaryImageSegmentation.ipynb
       - section: blog
         contents:
           - blog/index.qmd
@@ -11,3 +12,17 @@ website:
               - section: 2022-09-26
                 contents:
                   - blog/posts/2022-09-26/index.qmd
+      - section: blog
+        contents:
+          - section: posts
+            contents:
+              - section: dissertation
+                contents:
+                  - blog/posts/dissertation/intro.qmd
+      - section: blog
+        contents:
+          - section: posts
+            contents:
+              - section: tufte
+                contents:
+                  - blog/posts/tufte/tufte.qmd

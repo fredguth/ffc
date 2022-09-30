@@ -39,9 +39,9 @@ website:
         - section: Welcome
           contents:
             - index.ipynb
-        - section: Practical DL 2022
+        - section: Recipes
           contents:
-            - course22/index.qmd
+            - 01_binaryImageSegmentation.ipynb
     - title: "Blog"
 
   page-footer:

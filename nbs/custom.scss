@@ -1,3 +1,4 @@
+
 /*-- scss:rules --*/
 h1,
 h2,
@@ -19,3 +20,12 @@ h6 {
 .navbar-title {
   font-family: "Gilroy", -apple-system, sans-serif;
 }
+
+blockquote {
+  display: block;
+  border-left: 3px solid #962910;
+  color: #1a1a1a;
+  font-family: Merriweather, Georgia, Times, "Times New Roman", serif;
+  font-style: italic;
+}
+
