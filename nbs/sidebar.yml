@@ -1,0 +1,20 @@
+website:
+  sidebar:
+    contents:
+      - index.ipynb
+      - 00_core.ipynb
+      - section: blog
+        contents:
+          - blog/index.qmd
+          - section: posts
+            contents:
+              - section: 2022-09-26
+                contents:
+                  - blog/posts/2022-09-26/index.qmd
+      - section: blog
+        contents:
+          - section: posts
+            contents:
+              - section: dissertation
+                contents:
+                  - blog/posts/dissertation/intro.qmd
