@@ -3,24 +3,23 @@ title: "The emergence of an Information Bottleneck Theory of Deep Learning"
 description: "Chapter 1"
 subtitle: "‘As far as the laws of mathematics refer to reality. they are not certain, and as far as they are certain, they do not refer to reality.’ --- Albert Einstein"
 date: "2022-09-29"
-format:
-    html: 
-      self-contained: true
-
+image: goya.jpg
+image-alt: "Francisco Goya painting."
 author: Fred Guth
 reference-location: margin
-citation-location: margin
 bibliography: bibliography.bib
 toc-location: left
+categories:
+  - Dissertation
+  - Feynman
+  - LeCun
+  - Narrative
+  - Epistemology
 ---
 
 # Introduction {#ch:introduction}
 
 In his acceptance speech for the Test-of-Time award in NeurIPS 2017,[^1] Ali Rahimi[^2] started a controversy by frankly declaring [@rahimi:2017]. His concerns on the lack of theoretical understanding of machine learning for critical decision-making are rightful:
-
-::: {.column-margin #fig:feynman}
-![Richard Feynman, Nobel laureate physicist.](feynman.pdf){#fig:feynman}
-:::
 
 
 
@@ -35,17 +34,24 @@ The next day, Yann LeCun[^3] responded:
 
 Both researchers, at least, agree upon one thing: the practice of machine learning has outpaced its theoretical development. That is certainly a research opportunity.
 
-### A Tale of Babylonians and Greeks {#sec:greeks}
+### A Tale of Babylonians and Greeks {#sec-greeks}
 
-Richard Feynman ([\[fig:feynman\]][1]) used to lecture this story[@feynman:1994]: Babylonians were pioneers in mathematics; Yet, the Greeks took the credit. We are used to the Greek way of doing Math: start from the most basic axioms and build up a knowledge system. Babylonians were quite the opposite; they were pragmatic. No knowledge was considered more fundamental than others, and there was no urge to derive proofs in a particular order. Babylonians were concerned with the phenomena, Greeks with the ordinance. In Feynman's view, science is constructed in the Babylonian way. There is no fundamental truth. Theories try to connect dots from different pieces of knowledge. Only as science advances, one can worry about reformulation, simplification and ordering. Scientists are Babylonians; mathematicians are Greeks.
+[Richard Feynman][1] used to lecture this story [@feynman:1994]: Babylonians were pioneers in mathematics; Yet, the Greeks took the credit. We are used to the Greek way of doing Math: start from the most basic axioms and build up a knowledge system. Babylonians were quite the opposite; they were pragmatic. No knowledge was considered more fundamental than others, and there was no urge to derive proofs in a particular order. Babylonians were concerned with the phenomena, Greeks with the ordinance. In Feynman's view, science is constructed in the Babylonian way. There is no fundamental truth. Theories try to connect dots from different pieces of knowledge. Only as science advances, one can worry about reformulation, simplification and ordering. Scientists are Babylonians; mathematicians are Greeks.
 
 Mathematics and science are both tools for knowledge acquisition. They are also social constructs that rely on peer-reviewing. They are somewhat different, however.
+
+::: {.column-margin}
+![](imgs/feynman.png){#fig-feynman}
+
+Richard Feynman, Nobel laureate physicist.
+
+:::
 
 Science is empiric, based on facts collected from **experience**. When physicists around the world measured events that corroborated Newton's *"Law of Universal Gravitation"*, they did not prove it correct; they just made his theory more and more plausible. Still, only one experiment was needed to show that Einstein's *Relativity Theory* was even more believable. In contrast, we can and do prove things in mathematics.
 
 In mathematics, knowledge is absolute truth, and the way one builds new knowledge with it, its inference method, is deduction. Mathematics is a language, a formal one, a tool to precisely communicate some kinds of thoughts. As it happens with natural languages, there is beauty in it. The mathematician expands the boundaries of expression in this language.
 
-In science, there are no axioms: a falsifiable hypothesis/theory is proposed, and logical conclusions (predictions) from the theory are empirically tested. Despite inferring hypotheses by induction, there is no influence of psychology in the process. A tested hypothesis is not absolute truth. A hypothesis is never verified, only falsified by experiments[@popper:2004 p. 31-50]. Scientific knowledge is belief justified by experience; there are degrees of plausibility.
+In science, there are no axioms: a falsifiable hypothesis/theory is proposed, and logical conclusions (predictions) from the theory are empirically tested. Despite inferring hypotheses by induction, there is no influence of psychology in the process. A tested hypothesis is not absolute truth. A hypothesis is never verified, only falsified by experiments [@popper:2004 p. 31-50]. Scientific knowledge is belief justified by experience; there are degrees of plausibility.
 
 Understanding the epistemic contrast between mathematics and science will help us understand the past of [AI]{acronym-label="AI" acronym-form="singular+full"} and avoid some perils in its future.
 
@@ -53,7 +59,7 @@ Understanding the epistemic contrast between mathematics and science will help u
 
 **Science is a narrative** of how we understand Nature[@gleiser:2018]. In science, we collect facts, but they need interpretation. The logical conclusion from the hypothesis that predicts some behaviour in nature gives a plausible *meaning* to what we observed.
 
-To illustrate, take the ancient human desire of flying. There have always been stories of men strapping wings to themselves and attempting to fly by jumping from a tower and flapping those wings like birds (see )[@farrington:2016]. While concepts like lift, stability, and control were poorly understood, most human flight attempts ended in severe injury or even death. It did not matter how much evidence, how many hours of seeing different animals flying, those ludicrous brave men experienced; the *meaning* they took from what they saw was wrong, and their predictions incorrect.
+To illustrate, take the ancient human desire of flying. There have always been stories of men strapping wings to themselves and attempting to fly by jumping from a tower and flapping those wings like birds [@farrington:2016]. While concepts like lift, stability, and control were poorly understood, most human flight attempts ended in severe injury or even death. It did not matter how much evidence, how many hours of seeing different animals flying, those ludicrous brave men experienced; the *meaning* they took from what they saw was wrong, and their predictions incorrect.
 
 They did not die in vain[^4]; Science advances when scientists are wrong. Theories must be falsifiable, and scientists cheer for their failure. When it fails, there is room for new approaches. Only when we understood the observations in animal flight from the aerodynamics perspective, we learned to fly better than any other animal before. Science works by a "natural selection" of ideas, where only the fittest ones survive until a better one is born. Chaitin also points out that an idea has "fertility" to the extent to which it "illuminates us, inspires us with other ideas, and suggests unsuspected connections and new viewpoints" [@chaitin:2006 p. 9].
 
@@ -61,7 +67,7 @@ Being a Babylonian enterprise, science has no clear path. One of the exciting fa
 
 Another example is Information Theory. Several insights of Shannon's theory of communication were generalisations of ideas already present in Telegraphy [@shannon:1948]. New theories in artificial intelligence can, therefore, be developed from insights in the study of deep learning phenomena.[^5]
 
-### Bringing science to Computer Science {#sec:bringing_science}
+### Bringing science to Computer Science {#sec-bringing_science}
 
 Despite the name, Computer Science has been more mathematics than science. We, computer scientists, are very comfortable with theorems and proofs, not much with theories.
 
@@ -75,11 +81,18 @@ While physicists rejoice in finding phenomena that contradict current theories, 
 
 Artificial Intelligence has been through several of the aforementioned "winters". In 1957, Herbert Simon[^7] famously predicted that within ten years, a computer would be a chess champion [@russell:2010 section 1.3]. It took around 40 years, in any case. Computer scientists lacked understanding of the exponential nature of the problems they were trying to solve: Computational Complexity Theory had yet to be invented.
 
-Machine Learning Theory (computational and statistical) tries to avoid a similar trap by analysing and classifying learning problems according to the number of samples required to learn them (besides the number of steps). The matter of concern is that it currently predicts that generalisation requires simpler models in terms of parameters. In total disregard to the theory, deep learning models have shown spectacular generalisation power with hundreds of millions of parameters (and even more impressive overfitting capacity ).
+Machine Learning Theory (computational and statistical) tries to avoid a similar trap by analysing and classifying learning problems according to the number of samples required to learn them (besides the number of steps). The matter of concern is that it currently predicts that generalisation requires simpler models in terms of parameters. In total disregard to the theory, deep learning models have shown spectacular generalisation power with hundreds of millions of parameters (and even more impressive overfitting capacity).
 
 ## Problem
 
-In the last decade, we have witnessed a myriad of astonishing successes in Deep Learning. Despite those many successes in research and industry applications, we may again be climbing a peak of inflated expectations. If in the past, the false solution was to "add computation power" on problems, today we try to solve them by "piling data"([\[fig:machine_learning_2x\]][2]). Such behaviour has triggered a winner-takes-all competition for who collects more data (our data) amidst a handful of large corporations, raising ethical concerns about privacy and concentration of power [@oneil:2016].
+::: {.column-margin}
+![](imgs/machine_learning_2x.png){#fig-machine_learning_2x}
+
+ Source: https://xkcd.com/1838/. Reprinted with permission.
+
+:::
+
+In the last decade, we have witnessed a myriad of astonishing successes in Deep Learning. Despite those many successes in research and industry applications, we may again be climbing a peak of inflated expectations. If in the past, the false solution was to "add computation power" on problems, today we try to solve them by "piling data"([\[fig-machine_learning_2x\]][2]). Such behaviour has triggered a winner-takes-all competition for who collects more data (our data) amidst a handful of large corporations, raising ethical concerns about privacy and concentration of power [@oneil:2016].
 
 Nevertheless, we know that learning from way fewer samples is possible: humans show a much better generalisation ability than our current state-of-the-art artificial intelligence. To achieve such needed generalisation power, we may need to understand better how learning happens in deep learning. Rethinking generalisation might reshape the foundations of machine learning theory [@zhang:2016].
 
@@ -129,9 +142,15 @@ In the research conducted, we produced three main results that, to the extent of
 
 2.  We propose an Information-Theoretical learning problem different from [MDL]{acronym-label="MDL" acronym-form="singular+short"} proposed by  [@hinton:1993] for which we derived bounds using Shannon's . These results, however, are only indicative as they lack peer review to be validated.
 
-3.  We present a critique on @achille:2019phd's explanation [@achille:2019phd; @achille:2017emergence] for the role of layers in Deep Representation in the [IBT]{acronym-label="IBT" acronym-form="singular+short"} perspective ([\[sec:achille_proof_critique\]][4]), pointing out a weakness in the argument that, as far as we know, has not yet been presented. We then propose a counter-intuitive *hypothesis* that layers reduce the model's "effective" hypothesis space. This *hypothesis* is not formally proven in the present work, but we try to give the intuition behind it ([\[sec:proposed_hypothesis\]][5]). This result has not yet been validated as well.
+3.  We present a critique on @achille:2019phd's explanation[@achille:2019phd; @achille:2017emergence] for the role of layers in Deep Representation in the [IBT]{acronym-label="IBT" acronym-form="singular+short"} perspective ([\[sec-achille_proof_critique\]][4]), pointing out a weakness in the argument that, as far as we know, has not yet been presented. We then propose a counter-intuitive *hypothesis* that layers reduce the model's "effective" hypothesis space. This *hypothesis* is not formally proven in the present work, but we try to give the intuition behind it ([\[sec-proposed_hypothesis\]][5]). This result has not yet been validated as well.
 
 ## Dissertation preview and outline
+
+::: {.column-margin}
+![](imgs/dissertation-map.png)
+
+IBT "Genealogy" tree
+:::
 
 The dissertation is divided into two main parts ([\[pt:background\]][6] and [\[pt:emergence_of_theory\]][7]), with a break in the middle ([\[pt:intermezzo\]][8]).
 
@@ -187,11 +206,11 @@ Furthermore, they both share more or less the same "genealogy" of assumptions. [
 
 [^12]: [ITL]{acronym-label="ITL" acronym-form="singular+short"} makes the opposite path we are taking, bringing concepts of machine learning to information theory problems.
 
-  [1]: #fig:feynman {reference-type="ref" reference="fig:feynman"}
-  [2]: #fig:machine_learning_2x {reference-type="ref" reference="fig:machine_learning_2x"}
+  [1]: #fig-feynman {reference-type="ref" reference="fig-feynman"}
+  [2]: #fig-machine_learning_2x {reference-type="ref" reference="fig-machine_learning_2x"}
   [3]: #ch:literature {reference-type="ref" reference="ch:literature"}
-  [4]: #sec:achille_proof_critique {reference-type="ref" reference="sec:achille_proof_critique"}
-  [5]: #sec:proposed_hypothesis {reference-type="ref" reference="sec:proposed_hypothesis"}
+  [4]: #sec-achille_proof_critique {reference-type="ref" reference="sec-achille_proof_critique"}
+  [5]: #sec-proposed_hypothesis {reference-type="ref" reference="sec-proposed_hypothesis"}
   [6]: #pt:background {reference-type="ref" reference="pt:background"}
   [7]: #pt:emergence_of_theory {reference-type="ref" reference="pt:emergence_of_theory"}
   [8]: #pt:intermezzo {reference-type="ref" reference="pt:intermezzo"}

@@ -17,4 +17,11 @@ website:
             contents:
               - section: dissertation
                 contents:
+                  - blog/posts/dissertation/ai.qmd
+      - section: blog
+        contents:
+          - section: posts
+            contents:
+              - section: dissertation
+                contents:
                   - blog/posts/dissertation/intro.qmd
