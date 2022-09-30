@@ -1,6 +1,6 @@
 ---
 title: "The emergence of an Information Bottleneck Theory of Deep Learning"
-subtitle: "Chapter 1, Introduction"
+description: "Chapter 1"
 date: "2022-09-29"
 format:
     html: 
@@ -10,6 +10,7 @@ author: Fred Guth
 reference-location: margin
 citation-location: margin
 bibliography: bibliography.bib
+toc-location: left
 ---
 
 # Introduction {#ch:introduction}
