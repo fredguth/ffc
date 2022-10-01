@@ -7,7 +7,6 @@ image: imgs/elephant.png
 image-alt: "The blind men and the elephant."
 author: Fred Guth
 reference-location: margin
-cap-location: bottom
 bibliography: bibliography.bib
 toc-location: left
 categories:
