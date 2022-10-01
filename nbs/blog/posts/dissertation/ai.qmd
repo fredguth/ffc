@@ -7,6 +7,7 @@ image: imgs/elephant.png
 image-alt: "The blind men and the elephant."
 author: Fred Guth
 reference-location: margin
+cap-location: bottom
 bibliography: bibliography.bib
 toc-location: left
 categories:
@@ -60,19 +61,11 @@ This interest may explain why, since ancient times, philosophers have looked for
 
 ### Rationalism: The Cartesian view of Nature {#sec-rationalism}
 
-::: {.column-margin #fig-ars_magna_disc label="fig-ars_magna_disc"}
-![](imgs/ars_magna_disc.png)
-
-Example of one of Lull’s Ars Magna’s paper discs.
-:::
+![Example of one of Lull’s Ars Magna’s paper discs.](imgs/ars_magna_disc.png){.column-margin #fig-ars_magna_disc label="fig-ars_magna_disc"}
 
 In the 13^th^ century, the Catalan philosopher Ramon Lull wanted to produce all statements the human mind can think. For this task, he developed *logic paper machines*, discs of paper filled with esoteric coloured diagrams that connected symbols representing statements. Unfortunately, according to @gardner:1959, in a modern reassessment of his work, *"it is impossible, perhaps, to avoid a strong sense of anticlimax"* [@gardner:1959]. With megalomaniac self-esteem that suggests psychosis, his delusional sense of importance is more characteristic of cult founders. On the bright side, his ideas and books exerted some magic appeal that helped them be rapidly disseminated through all Europe [@gardner:1959].
 
-::: {.column-margin}
-![](imgs/ars_magna_disc.png)
 
-Example of one of Lull’s Ars Magna’s paper discs.
-:::
 Lull's work greatly influenced Leibniz and Descartes, who, in the 17^th^century, believed that all rational thought could be mechanised. This belief was the basis of **rationalism**, the epistemic view of the *Enlightenment* that regarded reason as the sole source of knowledge. In other words, they believed that reality has a logical structure and that certain truths are *self-evident*, and all truths can be derived from them.
 
 There was considerable interest in developing artificial languages during this period. Nowadays, they are called formal languages.
@@ -89,12 +82,8 @@ Alan Turing brought a new perspective to the *Entscheidungs Problem*: a function
 
 ### Empiricism: The sceptical view of Nature {#sec-empiricism}
 
-::: {.column-margin}
-![](imgs/hume.png){#fig-hume}
 
-David Hume, Scottish Enlightenment philosopher, historian, economist, librarian and essayist.
-
-:::
+![David Hume, Scottish Enlightenment philosopher, historian, economist, librarian and essayist.](imgs/hume.png){#fig-hume .column-margin}
 
 The response to **rationalism** was **empiricism**, the epistemological view that knowledge comes from sensory experience, our perceptions of the world. Locke explains this with the peripatetic axiom[^4]: *"there is nothing in the intellect that was not previously in the senses"* [@williams:2020]. Bacon, Locke and Hume were great exponents of this movement, which established the grounds of the scientific method.
 
@@ -116,12 +105,8 @@ In rationalism, Logic connects knowledge and good actions. In empiricism, the co
 
 ### The birth of AI as a research field
 
-::: {.column-margin}
-![](imgs/shannon.png){#fig-shannon}
 
-Claude Shannon, father of “information theory”.
-
-:::
+![Claude Shannon, father of “information theory”.](imgs/shannon.png){#fig-shannon .column-margin}
 
 
 In 1943, McCulloch and Pitts, a neurophysiologist and a logician, demonstrated that neuron-like electronic units could be wired together, act and interact by physiologically plausible principles and perform complex logical calculations [@russell:2010]. Moreover, they showed that any computable function could be computed by some network of connected neurons [@mcculloch:1943]. Their work marks the birth of [ANNs]{acronym-label="ANN" acronym-form="plural+full"}, even before the field of AI had this name. It was also the birth of **Connectionism**, using artificial neural networks, loosely inspired by biology, to explain mental phenomena and imitate intelligence.
@@ -132,8 +117,6 @@ In 1956, John McCarthy, [Claude Shannon][1], Marvin Minsky and Nathaniel Rochest
 
 ::: fullwidth
 ![The Blind Men and the Elephant.](imgs/elephant.png)
-
- \
 
 > *\
 > It was six men of Indostan\
@@ -154,11 +137,8 @@ In 1956, John McCarthy, [Claude Shannon][1], Marvin Minsky and Nathaniel Rochest
 
 Like the blind men in the parable, an intelligent agent shall model her understanding of Nature from limited sensory data.
 
-::: {.column-body}
-![](imgs/anatomy.png){#fig-anatomy width=60% fig-align="center"}
 
-Anatomy of an Intelligent Agent. Inspired by art in [@russell:2010]
-:::
+![Anatomy of an Intelligent Agent. Inspired by art in (@russell:2010)](imgs/anatomy.png){#fig-anatomy width=60% fig-align="center" .column-body}
 
 Thus, an agent perceives her environment with sensors, treat sensory data as facts and use these facts to possibly update her model of Nature, use the model to decide her actions, and acts via her actuators. In a way, agents continually communicate with Nature in a perception/action conversation ([\[fig-anatomy\]][2]).
 
@@ -214,9 +194,9 @@ It was pioneered by McCulloch and Pitts in 1943 [@mcculloch:1943]. One of Conne
 
 ::: {.column-page-left layout-ncol="2"}
 
-![Building in Harare, Zimbabwe, modelled after termite mounds. Photo by Mike Pearce.](imgs/arup_building.jpg){#fig-arup_building width="25%"}
+![Building in Harare, Zimbabwe, modelled after termite mounds. Photo by Mike Pearce.](imgs/arup_building.jpg){#fig-arup_building width="250px"}
 
-![Cathedral termite mound, Australia. Photo by Awoisoak Kaosiowa, 2008.](imgs/termite_cathedral.jpg){#fig-termite_cathedral width="25%"}
+![Cathedral termite mound, Australia. Photo by Awoisoak Kaosiowa, 2008.](imgs/termite_cathedral.jpg){#fig-termite_cathedral width="250px"}
 
 
 Biomimicry of termite technique achieves superior energy efficiency in buildings.
@@ -235,11 +215,9 @@ Such collective intelligence happens in groups of just a couple of million termi
 In contrast with the symbolic approach, in neural networks, the knowledge is not explicit in symbols but implicit in the strength of the connections between the neurons. Besides, it is a very general and flexible approach since these connections can be updated algorithmically: they are algorithms that *learn*: the connectionist approach is an example of what we now call Machine Learning.
 
 ### Machine Learning
-:::{.column-margin}
-![](imgs/lulu.png)
 
-Is this a cat?
-:::
+![Is this a cat?](imgs/lulu.png){#fig-lulu .column-margin}
+
 Look at [\[fig-lulu\]][5]. Is this a picture of a cat? How to write a program to do such a simple classification task (cat/no cat)? One could develop clever ways to use *features* from the input picture and process them to guess. Though, it is not an easy program to design. Worse, even if one manages to program such a task, how much would it worth to accomplish a related *task*, to recognise a dog, for example? For long, this was the problem of researchers in many areas of interest of AI:[CV]{acronym-label="CV" acronym-form="singular+full"}, [NLP]{acronym-label="NLP" acronym-form="singular+full"}, Speech Recognition [SR]{acronym-label="SR" acronym-form="singular+short"}; much mental effort was put, with inferior results, in problems that we humans solve with apparent ease.
 
 The solution is an entirely different approach for building artificial intelligence: instead of making the program do the *task*, build the program that outputs the program that does the *task*. In other words, learning algorithms use "training data" to infer the transformations to the input that generates the desired output.
