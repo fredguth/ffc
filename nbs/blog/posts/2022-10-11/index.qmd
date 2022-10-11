@@ -1,0 +1,101 @@
+---
+title: "Lesson 9"
+description: ""
+date: "2022-09-27"
+author: Fred Guth
+image: jermy-dicac.jpg
+image-alt: "Jeremy Howard in the style of Paul Dirac."
+categories:
+  - learning
+  - fastai
+
+draft: false
+---
+
+## Course Logistics
+- Colab pricing has gone crazy, now is not a bad time to buy a GPU.
+- [Lambda is offering $150 in GPU time](https://forums.fast.ai/t/lambda-gpu-cloud-for-deep-learning-a100s-at-1-10-gpu-hr-150-sign-up-credit/100942/4).  The challenge is that you cannot pause an instance.
+The [Practical Deep Learning for Coders](https://course.fast.ai/) course has a top-down approach to teaching.  Let's **not** *start from the basics*, but from our goals. In the first lesson, you learn how to build a classifier that would be science fiction in 2015. Neat! Equally important, thought, is what is implicit: a requirement for a [top-down approach to learning](https://forums.fast.ai/t/learning-strategy-for-top-down-approach/66173):
+- You may need 16Gb to 24Gb for GPU VRAM for training, 8Gb for inference.
+- There will be a little bit before the recording. The "real" start is when the first slide appears.
+
+## Introduction
+- First lesson of part 2 with is named "Deep learning Foundations to Stable Diffusion"
+- (Im)practical - we will a learn a lot of details that are not really necessary for using, but will be important for research.
+- We will do a quick run on how to use Stable Diffusion
+- If you haven't done DL before, will be hard. Strongly suggest doing part 1 before this part.
+- Stable diffusion is moving quickly. But don't worry, the foundations don't change so much.
+-- Even as of recording the Notebook is a little bit outdated.
+- A small difference in this course is that is not all centered in Jeremy
+-- influenced by Fast.ai alumini
+-- Whitaker: first to create educational material
+-- Wasim Lorgat: long time fastai contributor
+-- Pedro Cuenca: came to SF last course and it is now at HuggingFace
+-- Tanishq focus is on medical application
+- Part 2 requires more compute. Check options in course.fast.ai:
+-- Colab is still good, but is getting pricier
+-- Paperspace Gradient 
+-- Jarvis Labs
+-- Lambda Labs is the most recent provider. They are the cheapeast (at the moment)
+-- GPU prices are going down
+- Play with stable difussion:
+--  fastai/diffusion-nbs
+-- the community has changed to keeping code available as colab notebooks
+-- example: [Deforum](https://deforum.github.io/)
+- The best way to learn about prompts is (Lexica.art)[lexica.art]
+- By the end of this course we will understand how prompts work and go beyond with new data types
+
+## Stable Diffusion with Diffusers
+- Diffusers is HuggingFase library for Stable Diffusion, at the moment the recommended library
+- HF has doing a great good job
+- HF pipeline is similar to fastai learn
+- inference is quite different to what we have been used to in fastai
+-- these models require many steps
+-- they can be in less steps, research is reducing the number of steps, but good results still require steps
+-  guidance scale says to what degree we should be focusing on the caption (prompt)
+-- feeling that there is something to be done in this _function_
+
+## How to get started playing around with Stable Diffusion
+- negative_prompt: will take the prompt and create a second image that respond to the negative_prompt and subtract from the first one
+- you can also pass images with the img2img pipeline
+-- you can create something with the  composition you are looking for
+-- you can use the output of a previous result as input
+-- textual inversion: you actually fine tune a single embedding. 
+--- give the concept a name (token)
+--- give the example pictures this token and add to the model
+- Dreambooth takes a not so used token and finetune just this token
+
+An annotated copy of Advanced Potion-Making book belonged to Severus Snape while a Hogwarts student.
+:::
+
+### Why build a cookbook?
+ A cookbook enables reproducibility, but as important... it allows _you_ to come back to your work in a few months and understand what you did. **It is a gift for your future self.**
+
+```{mermaid}
+flowchart LR
+  A(Watch lecture) --> B(Run lesson notebook)
+  B --> C(Reproduce)
+  C --Different dataset--> C
+  C --> D(Share learnings)
+  D:::someclass
+  classDef someclass fill:#f96;
+
+```
+Besides, when you share your learnings you need to structure your thought and that makes you check for gaps in your understanding and solidifies what you have learned.
+
+### How to build a cookbook?
+The best way to document your fastai learnings is using [nbdev](nbdev.fast.ai), which is the development tool used to build and document `fast.ai` lib itself. That is how this `Fred's fast.ai cookbook` was made. You can just fork [my repo](https://github.com/fredguth/ffc) or follow the [nbdev tutorial](https://nbdev.fast.ai/tutorials/tutorial.html) (that is what I did).
+
+
+
+
+draft: false
+---
+
+The [Practical Deep Learning for Coders](https://course.fast.ai/) course has a top-down approach to teaching.  Let's **not** *start from the basics*, but from our goals. In the first lesson, you learn how to build a classifier that would be science fiction in 2015. Neat! Equally important, thought, is what is implicit: a requirement for a [top-down approach to learning](https://forums.fast.ai/t/learning-strategy-for-top-down-approach/66173):
+
+:::{.column-margin  .callout-tip}
+## doc(_function_)
+While running the lesson notebook, use `doc(fn)` to access the _function_'s documentation.
+:::
+
