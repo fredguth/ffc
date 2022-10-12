@@ -10,7 +10,8 @@ format:
     toc: true
     toc-depth: 4
     page-layout: full
-
+    # code-fold: true
+    # code-tools: true
 website:
   twitter-card: true
   open-graph: true
@@ -40,9 +41,8 @@ website:
           contents:
             - index.ipynb
         - section: Recipes
-          contents:
-            - 01_binaryImageSegmentation.ipynb
-    - title: "Blog"
+         
+        - title: "Blog"
 
   page-footer:
     left: |

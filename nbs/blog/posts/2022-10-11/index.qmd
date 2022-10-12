@@ -1,54 +1,89 @@
 ---
 title: "Lesson 9"
-description: ""
-date: "2022-09-27"
+description: "Practical Deep Learning For Coders 2022 Part 2 - Lesson 9 - Stable Diffusion"
+date: "2022-10-11"
 author: Fred Guth
-image: jermy-dicac.jpg
+image: jeremy-dirac.png
 image-alt: "Jeremy Howard in the style of Paul Dirac."
 categories:
-  - learning
-  - fastai
-
+  - stable diffusion
+  - lesson notes
 draft: false
 ---
 
-## Course Logistics
-- Colab pricing has gone crazy, now is not a bad time to buy a GPU.
-- [Lambda is offering $150 in GPU time](https://forums.fast.ai/t/lambda-gpu-cloud-for-deep-learning-a100s-at-1-10-gpu-hr-150-sign-up-credit/100942/4).  The challenge is that you cannot pause an instance.
-The [Practical Deep Learning for Coders](https://course.fast.ai/) course has a top-down approach to teaching.  Let's **not** *start from the basics*, but from our goals. In the first lesson, you learn how to build a classifier that would be science fiction in 2015. Neat! Equally important, thought, is what is implicit: a requirement for a [top-down approach to learning](https://forums.fast.ai/t/learning-strategy-for-top-down-approach/66173):
-- You may need 16Gb to 24Gb for GPU VRAM for training, 8Gb for inference.
-- There will be a little bit before the recording. The "real" start is when the first slide appears.
+- video/audio problems in the beginning, really starts at [6:54]
 
-## Introduction
-- First lesson of part 2 with is named "Deep learning Foundations to Stable Diffusion"
-- (Im)practical - we will a learn a lot of details that are not really necessary for using, but will be important for research.
-- We will do a quick run on how to use Stable Diffusion
-- If you haven't done DL before, will be hard. Strongly suggest doing part 1 before this part.
-- Stable diffusion is moving quickly. But don't worry, the foundations don't change so much.
--- Even as of recording the Notebook is a little bit outdated.
-- A small difference in this course is that is not all centered in Jeremy
--- influenced by Fast.ai alumini
--- Whitaker: first to create educational material
--- Wasim Lorgat: long time fastai contributor
--- Pedro Cuenca: came to SF last course and it is now at HuggingFace
--- Tanishq focus is on medical application
-- Part 2 requires more compute. Check options in course.fast.ai:
--- Colab is still good, but is getting pricier
--- Paperspace Gradient 
--- Jarvis Labs
--- Lambda Labs is the most recent provider. They are the cheapeast (at the moment)
--- GPU prices are going down
-- Play with stable difussion:
---  fastai/diffusion-nbs
--- the community has changed to keeping code available as colab notebooks
--- example: [Deforum](https://deforum.github.io/)
+## Course Logistics [6:54]
+:::{.callout-warning}
+Remember not share links to course recordings or materials.
+:::
+- You can share your notes/learnings, but please don't share links to course recordings or materials.
+- Resources Needed:
+-- Colab pricing has gone crazy, now is not a bad time to buy a GPU.
+-- [Lambda is offering $150 in GPU time](https://forums.fast.ai/t/lambda-gpu-cloud-for-deep-learning-a100s-at-1-10-gpu-hr-150-sign-up-credit).  The challenge is that you cannot pause a lambda instance.
+-- For part 2, you may need 16Gb to 24Gb of GPU VRAM for training, 8Gb for inference.
+- Check you are tracking [Lesson 9 official topic](https://forums.fast.ai/t/lesson-9-official-topic) (end of the page). The "chat" is the official source of information for the lesson.
+- There is a Google [calendar](https://calendar.google.com/calendar/u/0?cid=Y18wNzdlY2I2MWVjMmRlOGI5MzE3ZGE2NmQxNmM1NTIwNDEwODRkNDFkZjllMTU0ZTZiNzAyNjgwMGYxNzQyNzU5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20) for lessons
+- Lesson 9 is divided in 3 parts (links in [Lesson 9 official topic](https://forums.fast.ai/t/lesson-9-official-topic)):
+  - This stream
+  - Lesson 9A from [Jonathan Whitaker (@johnowhitaker)](https://forums.fast.ai/u/johnowhitaker/): A deeper dive on the subject
+  - Lesson 9B from [Tanishq (@ilovescience)](https://forums.fast.ai/u/ilovescience) and [Wasim (@seem)](https://forums.fast.ai/u/seem): About the math. *To be released*. 
+- diffusion-nbs repo: things to start to play with stable diffusion
+- It is recommended to take a look on the [background links](https://forums.fast.ai/t/lesson-9-official-topic/100562/2#useful-background-on-fastai-courses-3)
+  - another suggestion was [Radek's](https://forums.fast.ai/u/seem) [Meta Learning](https://radekosmulski.com/meta-learning-introduction/) book
+- There will be always little bit of logistics talk before the recording of each lesson. The official recording starts when slide with title appears.
+- [Study groups](https://forums.fast.ai/t/all-the-study-groups/) make learning more fun
+-- The [SF Study Group](https://forums.fast.ai/t/study-groups-in-sf/) is the one running longer
+
+## Introduction [20:58]
+- First lesson of part 2: "Deep learning Foundations to Stable Diffusion"
+- (Im)practical: we will a learn a lot of details that are not really necessary for using, but will be important for research.
+- We will do a quick run on how to use **Stable Diffusion**
+- If you haven't done DL before, will be hard. Strongly suggest doing [Part 1](https://forums.fast.ai/t/lesson-1-official-topic/) before this part.
+- Stable diffusion is moving quickly. 
+  - Even as of recording, the Lesson Notebook is a little bit outdated.
+  - But don't worry, the foundations don't change so much.
+
+::: {.column-margin}
+![](jeremy_dwarf.jpg)
+
+Stable Diffusion example with Jeremy Howard as a dwarf ([tweet](https://twitter.com/jeremyphoward/status/1579244598446039040/photo/1)) via  [Astraea/strmr](https://www.strmr.com/examples) service: built by Fastai alumni on top of [DreamBooth](https://dreambooth.github.io/)
+:::
+
+
+#### What has changed from previous courses
+- No longer all centered in Jeremy
+- influenced by Fast.ai alumini
+  - [Jonathan Whitaker (@johnowhitaker)]: first to create educational material
+  - [Wasim Lorgat (@seem)](https://forums.fast.ai/u/seem): extraordinary fastai contributor
+  - [Pedro Cuenca (@pcuenq)](https://forums.fast.ai/u/pcuenq/): came to SF last course and it is now at [HuggingFace](https://huggingface.co/)
+  - [Tanishq (@ilovescience)](https://forums.fast.ai/u/ilovescience): now at stability.ai, expertise on medical applications
+
+#### Compute
+Part 2 requires more compute. Check options in course.fast.ai:
+
+ - [Colab](https://colab.research.google.com/) is still good, but is getting pricier
+ - [Paperspace](https://www.paperspace.com/gradient) Gradient 
+ - [Jarvis](https://jarvis-labs.xyz/) Labs: made by fastai alumni and loved by many students
+ - [Lambda](https://lambdalabs.com/) Labs is the most recent provider. They are the cheapeast (at the moment)
+ - GPU prices are going down
+
+
+## Play with stable difussion! [37:30]
+-  [fastai/diffusion-nbs](https://github.com/fastai/diffusion-nbs)
+  - references to tools and cool stuff
+- **Play a lot!** It is important to play and learn the capabilities and limitations
+- the community has moved towards keeping code available as colab notebooks
+  - example: [Deforum](https://deforum.github.io/)
 - The best way to learn about prompts is (Lexica.art)[lexica.art]
 - By the end of this course we will understand how prompts work and go beyond with new data types
 
-## Stable Diffusion with Diffusers
-- Diffusers is HuggingFase library for Stable Diffusion, at the moment the recommended library
-- HF has doing a great good job
-- HF pipeline is similar to fastai learn
+## Stable Diffusion with 🤗 Diffusers [42:00]
+- [Notebook](https://github.com/fastai/diffusion-nbs/blob/master/stable_diffusion.ipynb) 
+- [Diffusers](https://github.com/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb) is [HuggingFace](huggingface.co) library for Stable Diffusion
+  - at the moment the recommended library
+  - HF 🤗 has doing a great good job on being pionneers
+  - HF pipeline is similar to fastai learn
 - inference is quite different to what we have been used to in fastai
 -- these models require many steps
 -- they can be in less steps, research is reducing the number of steps, but good results still require steps
@@ -88,3 +123,4 @@ flowchart LR
   B --> C(Reproduce results)
   C --Different dataset--> C
 ```
+

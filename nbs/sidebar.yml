@@ -3,7 +3,6 @@ website:
     contents:
       - index.ipynb
       - 00_utils.ipynb
-      - 01_vision.segmentation.binary.ipynb
       - section: blog
         contents:
           - blog/index.qmd

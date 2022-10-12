@@ -16,7 +16,7 @@ categories:
   - Hume
   - Dennet
   - strange inversion
-Draft: True
+draft: true
 ---
 
 This chapter defines artificial intelligence, presents the epistemological differences of intelligent agents in history, and discusses their consequences to machine learning theory.
