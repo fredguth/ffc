@@ -1,6 +1,6 @@
 ---
-title: "Lesson 9"
-description: "Practical Deep Learning For Coders 2022 Part 2 - Lesson 9 - Stable Diffusion"
+title: "Stable Diffusion"
+description: "Practical Deep Learning For Coders 2022, Lesson 9"
 date: "2022-10-11"
 author: Fred Guth
 image: jeremy-dirac.png
@@ -8,6 +8,7 @@ image-alt: "Jeremy Howard in the style of Paul Dirac."
 categories:
   - stable diffusion
   - lesson notes
+  - fastai
 draft: false
 ---
 
@@ -69,7 +70,7 @@ Part 2 requires more compute. Check options in course.fast.ai:
  - GPU prices are going down
 
 
-## Play with stable difussion! [37:30]
+## Play with Stable Diffusion! [37:30]
 -  [fastai/diffusion-nbs](https://github.com/fastai/diffusion-nbs)
   - references to tools and cool stuff
 - **Play a lot!** It is important to play and learn the capabilities and limitations
@@ -84,21 +85,43 @@ Part 2 requires more compute. Check options in course.fast.ai:
   - at the moment the recommended library
   - HF 🤗 has doing a great good job on being pionneers
   - HF pipeline is similar to fastai learn
-- inference is quite different to what we have been used to in fastai
--- these models require many steps
--- they can be in less steps, research is reducing the number of steps, but good results still require steps
--  guidance scale says to what degree we should be focusing on the caption (prompt)
--- feeling that there is something to be done in this _function_
+``` python
+torch.manual_seed(1024)
+num_rows,num_cols = 5,5
+pipe.safety_checker = lambda images, clip_input: (images, False)
+images = concat(pipe(prompt="a photograph of an astronaut riding a horse", num_inference_steps=s, guidance_scale=7).images for s in  list(range(2,100,4)))
+```
+![Image output of the inference with different number of steps (from 2 to 98 steps, increasing 4 steps per image).](5x5.png){#fig-5x5 width=90%}
 
-## How to get started playing around with Stable Diffusion
+- inference is quite different to what we have been used to in fastai
+  - usage of prompts, guidance scale, etc
+  - these models require many steps
+  - research is reducing the number of steps, but good results still require many
+
+:::{.callout-tip}
+## Fred's observations
+It seems that a high number of steps can be detrimental  to the final quality, but this hunch needs more experimentation
+:::
+
+-  guidance scale says to what degree we should be focusing on the caption (prompt)
+  - JH has the feeling that there is something to be done in this _function_
+
+![Image output of the inference with different number degrees in the guidance scale for each row.](4x4.png){#fig-4x4 width=70%}
+
 - negative_prompt: will take the prompt and create a second image that respond to the negative_prompt and subtract from the first one
-- you can also pass images with the img2img pipeline
--- you can create something with the  composition you are looking for
--- you can use the output of a previous result as input
--- textual inversion: you actually fine tune a single embedding. 
---- give the concept a name (token)
---- give the example pictures this token and add to the model
-- Dreambooth takes a not so used token and finetune just this token
+
+
+#### 🤗 Diffuser Img2Img Pipeline
+  - you can create something with the  composition you are looking for
+  - you can use the output of a previous result as input
+
+#### Fine tunning 🤗 Diffuser model
+- textual inversion: you actually fine tune a single embedding. 
+    - give the concept a name (token)
+    - give the example pictures this token and add to the model
+
+- Dreambooth
+    -  takes a not so used token and finetune just this token
 
 ## How it works
 - We will use a different explanation to what is commonly explained
