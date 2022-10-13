@@ -1,0 +1,9 @@
+title-block-banner: "#fcf9ef"
+title-block-banner-color: body
+toc: true
+toc-location: left
+sidebar: true
+search: false
+page-layout: article
+fig-cap-location: margin
+author: Fred Guth

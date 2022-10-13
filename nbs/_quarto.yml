@@ -1,18 +1,15 @@
 project:
   type: website
-
+  output-dir: _site
 format:
   html:
     theme:
       - cosmo
       - custom.scss
     css: styles.css
-    toc: true
-    toc-depth: 4
     page-layout: full
-    # code-fold: true
-    # code-tools: true
 website:
+  title: "Fred's Fast.ai Cookbook"
   twitter-card: true
   open-graph: true
   repo-actions: [edit, issue]
@@ -21,10 +18,10 @@ website:
     title: "Fred's fast.ai cookbook"
     collapse-below: lg
     background: "#fcf9ef"
-    search: true
+    search: false
     left:
       - text: "Blog"
-        href: blog/index.qmd
+        href: blog.qmd
     right:
       - icon: github
         href: "https://github.com/fredguth/ffc"
@@ -33,7 +30,8 @@ website:
         href: https://twitter.com/fredguth
         aria-label: fredguth at Twitter
   sidebar:
-    - title: "Home"
+    - id: "home"
+      title: "Home"
       style: floating
       collapse-level: 2
       contents:
@@ -41,9 +39,18 @@ website:
           contents:
             - index.ipynb
         - section: Recipes
-         
-        - title: "Blog"
-
+        - text: "---"
+        - text: "Blog"
+          href: blog.qmd
+    - id: "diss"
+      title: "Dissertation"
+      contents:
+        - "---"
+        - section: "The emergence of an Information Bottleneck Theory of Deep Learning"
+          contents:
+            - dissertation/intro.qmd
+            - dissertation/ai.qmd
+        - "---"
   page-footer:
     left: |
       © 2022 onwards, Fred Guth

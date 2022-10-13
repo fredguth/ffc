@@ -1,0 +1,148 @@
+---
+title: "Practical Deep Learning For Coders 2022, Lesson 9"
+description: "The start of our Stable Diffusion saga"
+date: "2022-10-11"
+image: jeremy-dirac.png
+image-alt: "Jeremy Howard in the style of Paul Dirac."
+categories:
+  - stable diffusion
+  - lesson notes
+  - fastai
+draft: false
+---
+
+- video/audio problems in the beginning, really starts at [6:54]
+
+## Course Logistics [6:54]
+:::{.callout-warning}
+Remember not share links to course recordings or materials.
+:::
+- You can share your notes/learnings, but please don't share links to course recordings or materials.
+- Resources Needed:
+-- Colab pricing has gone crazy, now is not a bad time to buy a GPU.
+-- [Lambda is offering $150 in GPU time](https://forums.fast.ai/t/lambda-gpu-cloud-for-deep-learning-a100s-at-1-10-gpu-hr-150-sign-up-credit).  The challenge is that you cannot pause a lambda instance.
+-- For part 2, you may need 16Gb to 24Gb of GPU VRAM for training, 8Gb for inference.
+- Check you are tracking [Lesson 9 official topic](https://forums.fast.ai/t/lesson-9-official-topic) (end of the page). The "chat" is the official source of information for the lesson.
+- There is a Google [calendar](https://calendar.google.com/calendar/u/0?cid=Y18wNzdlY2I2MWVjMmRlOGI5MzE3ZGE2NmQxNmM1NTIwNDEwODRkNDFkZjllMTU0ZTZiNzAyNjgwMGYxNzQyNzU5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20) for lessons
+- Lesson 9 is divided in 3 parts (links in [Lesson 9 official topic](https://forums.fast.ai/t/lesson-9-official-topic)):
+  - This stream
+  - Lesson 9A from [Jonathan Whitaker (@johnowhitaker)](https://forums.fast.ai/u/johnowhitaker/): A deeper dive on the subject
+  - Lesson 9B from [Tanishq (@ilovescience)](https://forums.fast.ai/u/ilovescience) and [Wasim (@seem)](https://forums.fast.ai/u/seem): About the math. *To be released*. 
+- diffusion-nbs repo: things to start to play with stable diffusion
+- It is recommended to take a look on the [background links](https://forums.fast.ai/t/lesson-9-official-topic/100562/2#useful-background-on-fastai-courses-3)
+  - another suggestion was [Radek's](https://forums.fast.ai/u/seem) [Meta Learning](https://radekosmulski.com/meta-learning-introduction/) book
+- There will be always little bit of logistics talk before the recording of each lesson. The official recording starts when slide with title appears.
+- [Study groups](https://forums.fast.ai/t/all-the-study-groups/) make learning more fun
+-- The [SF Study Group](https://forums.fast.ai/t/study-groups-in-sf/) is the one running longer
+
+## Introduction [20:58]
+- First lesson of part 2: "Deep learning Foundations to Stable Diffusion"
+- (Im)practical: we will a learn a lot of details that are not really necessary for using, but will be important for research.
+- We will do a quick run on how to use **Stable Diffusion**
+- If you haven't done DL before, will be hard. Strongly suggest doing [Part 1](https://forums.fast.ai/t/lesson-1-official-topic/) before this part.
+- Stable diffusion is moving quickly. 
+  - Even as of recording, the Lesson Notebook is a little bit outdated.
+  - But don't worry, the foundations don't change so much.
+
+::: {.column-margin}
+![](jeremy_dwarf.jpg)
+
+Stable Diffusion example with Jeremy Howard as a dwarf ([tweet](https://twitter.com/jeremyphoward/status/1579244598446039040/photo/1)) via  [Astraea/strmr](https://www.strmr.com/examples) service: built by Fastai alumni on top of [DreamBooth](https://dreambooth.github.io/)
+:::
+
+
+#### What has changed from previous courses
+- No longer all centered in Jeremy
+- influenced by Fast.ai alumini
+  - [Jonathan Whitaker (@johnowhitaker)]: first to create educational material
+  - [Wasim Lorgat (@seem)](https://forums.fast.ai/u/seem): extraordinary fastai contributor
+  - [Pedro Cuenca (@pcuenq)](https://forums.fast.ai/u/pcuenq/): came to SF last course and it is now at [HuggingFace](https://huggingface.co/)
+  - [Tanishq (@ilovescience)](https://forums.fast.ai/u/ilovescience): now at stability.ai, expertise on medical applications
+
+#### Compute
+Part 2 requires more compute. Check options in course.fast.ai:
+
+ - [Colab](https://colab.research.google.com/) is still good, but is getting pricier
+ - [Paperspace](https://www.paperspace.com/gradient) Gradient 
+ - [Jarvis](https://jarvis-labs.xyz/) Labs: made by fastai alumni and loved by many students
+ - [Lambda](https://lambdalabs.com/) Labs is the most recent provider. They are the cheapeast (at the moment)
+ - GPU prices are going down
+
+
+## Play with Stable Diffusion! [37:30]
+-  [fastai/diffusion-nbs](https://github.com/fastai/diffusion-nbs)
+  - references to tools and cool stuff
+- **Play a lot!** It is important to play and learn the capabilities and limitations
+- the community has moved towards keeping code available as colab notebooks
+  - example: [Deforum](https://deforum.github.io/)
+- The best way to learn about prompts is (Lexica.art)[lexica.art]
+- By the end of this course we will understand how prompts work and go beyond with new data types
+
+## Stable Diffusion with 🤗 Diffusers [42:00]
+- [Notebook](https://github.com/fastai/diffusion-nbs/blob/master/stable_diffusion.ipynb) 
+- [Diffusers](https://github.com/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb) is [HuggingFace](huggingface.co) library for Stable Diffusion
+  - at the moment the recommended library
+  - HF 🤗 has doing a great good job on being pionneers
+  - HF pipeline is similar to fastai learn
+``` python
+torch.manual_seed(1024)
+num_rows,num_cols = 5,5
+pipe.safety_checker = lambda images, clip_input: (images, False)
+images = concat(pipe(prompt="a photograph of an astronaut riding a horse", num_inference_steps=s, guidance_scale=7).images for s in  list(range(2,100,4)))
+```
+![Image output of the inference with different number of steps (from 2 to 98 steps, increasing 4 steps per image).](5x5.png){#fig-5x5 width=90%}
+
+- inference is quite different to what we have been used to in fastai
+  - usage of prompts, guidance scale, etc
+  - these models require many steps
+  - research is reducing the number of steps, but good results still require many
+
+:::{.callout-tip}
+## Fred's observations
+It seems that a high number of steps can be detrimental  to the final quality, but this hunch needs more experimentation
+:::
+
+-  guidance scale says to what degree we should be focusing on the caption (prompt)
+  - JH has the feeling that there is something to be done in this _function_
+
+![Image output of the inference with different number degrees in the guidance scale for each row.](4x4.png){#fig-4x4 width=70%}
+
+- negative_prompt: will take the prompt and create a second image that respond to the negative_prompt and subtract from the first one
+
+
+#### 🤗 Diffuser Img2Img Pipeline
+  - you can create something with the  composition you are looking for
+  - you can use the output of a previous result as input
+
+#### Fine tunning 🤗 Diffuser model
+- textual inversion: you actually fine tune a single embedding. 
+    - give the concept a name (token)
+    - give the example pictures this token and add to the model
+
+- Dreambooth
+    -  takes a not so used token and finetune just this token
+
+## How it works
+- We will use a different explanation to what is commonly explained
+
+- Imagine a magic api `f``...
+- img X_1-> `f` -> p_isDigit(X_1)=0.98
+- img X_2-> `f` -> p_isDigit(X_2)=0.4
+- img X_2-> `f` -> p_isDigit(X_2)=0.02
+
+- if you have this magic api, you can use it to create images.
+- if we change a pixel, what is the probability now? 
+- we calculated the gradient of the probability of X_3 being a hand written digit:
+$\frac{\Lambda p_{\text{isDigit}}(X_3)}{\Lambda X_3}$
+- instead of using the gradient to change the model, we are changing the input
+-- pixel by pixel is the finite differencing -> very slow
+-- instead, we could just use `f.backward()` and get X_3.grad
+
+
+```{mermaid}
+flowchart LR
+  A(Watch lecture) --> B(Run lesson notebook)
+  B --> C(Reproduce results)
+  C --Different dataset--> C
+```
+

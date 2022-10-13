@@ -3,32 +3,19 @@ website:
     contents:
       - index.ipynb
       - 00_utils.ipynb
-      - section: blog
+      - blog.qmd
+      - section: dissertation
         contents:
-          - blog/index.qmd
-          - section: posts
-            contents:
-              - section: 2022-09-26
-                contents:
-                  - blog/posts/2022-09-26/index.qmd
-      - section: blog
+          - dissertation/index.qmd
+          - dissertation/ai.qmd
+          - dissertation/intro.qmd
+      - section: posts
         contents:
-          - section: posts
+          - section: 2022-09-26
             contents:
-              - section: 2022-10-11
-                contents:
-                  - blog/posts/2022-10-11/index.qmd
-      - section: blog
+              - posts/2022-09-26/index.qmd
+      - section: posts
         contents:
-          - section: posts
+          - section: 2022-10-11
             contents:
-              - section: dissertation
-                contents:
-                  - blog/posts/dissertation/ai.qmd
-      - section: blog
-        contents:
-          - section: posts
-            contents:
-              - section: dissertation
-                contents:
-                  - blog/posts/dissertation/intro.qmd
+              - posts/2022-10-11/index.qmd
