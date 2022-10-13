@@ -7,3 +7,5 @@ search: false
 page-layout: article
 fig-cap-location: margin
 author: Fred Guth
+language: 
+  title-block-published: "Updated"

@@ -171,9 +171,11 @@ From @fig-sketch to @fig-photo using the img2img pipeline.
   - the input is a somewhat noisy image
   - the output is the noise that was added to the image
 
+
 |               |         Input          |    Output   |
 |---------------|:-----------------------|------------:|
 | Unet          | somewhat noisy images  | the noise   |
+
 
 
 8. The problem we have is that a 512 x 512 x 3 image is too big (786,432 pixels)
