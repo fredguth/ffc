@@ -20,6 +20,8 @@ website:
     background: "#fcf9ef"
     search: false
     left:
+      - text: "Dissertation"
+        href: dissertation/intro.qmd
       - text: "Blog"
         href: blog.qmd
     right:
@@ -39,9 +41,6 @@ website:
           contents:
             - index.ipynb
         - section: Recipes
-        - text: "---"
-        - text: "Blog"
-          href: blog.qmd
     - id: "diss"
       title: "Dissertation"
       contents:

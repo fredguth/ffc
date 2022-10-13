@@ -1,5 +1,5 @@
 ---
-title: "Context"
+title: "Introduction"
 description: "Chapter 1"
 subtitle: "‘As far as the laws of mathematics refer to reality. they are not certain, and as far as they are certain, they do not refer to reality.’ --- Albert Einstein"
 date: "2022-02-18"
@@ -11,19 +11,16 @@ categories:
   - LeCun
   - Narrative
   - Epistemology
-title-block-banner: "#fcf9ef"
-title-block-banner-color: body
-toc: true
-toc-location: left
-author: Fred Guth
-bibliography: bibliography.bib
-page-layout: article
-sidebar: "diss"
-reference-location: margin
+metadata-files: 
+  - diss.yml
 ---
+
+
+::: {.content-hidden when-format="html"}
 
 # Introduction {#ch:introduction}
 
+:::
 In his acceptance speech for the Test-of-Time award in NeurIPS 2017,[^1] Ali Rahimi[^2] started a controversy by frankly declaring [@rahimi:2017]. His concerns on the lack of theoretical understanding of machine learning for critical decision-making are rightful:
 
 

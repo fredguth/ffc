@@ -6,7 +6,6 @@ listing:
   sort: "date desc"
   contents: 
     - posts/
-    - dissertation/
   sort-ui: false
   filter-ui: false
   categories: true
