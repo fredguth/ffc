@@ -78,7 +78,9 @@ Part 2 requires more compute. Check options in course.fast.ai:
 - The best way to learn about prompts is (Lexica.art)[lexica.art]
 - By the end of this course we will understand how prompts work and go beyond with new data types
 
-## Stable Diffusion with 🤗 Diffusers [42:00]
+## How to get started with Stable Diffusion [42:00]
+> Using 🤗 Huggingface Diffusers
+
 - [Notebook](https://github.com/fastai/diffusion-nbs/blob/master/stable_diffusion.ipynb) 
 - [Diffusers](https://github.com/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb) is [HuggingFace](huggingface.co) library for Stable Diffusion
   - at the moment the recommended library
@@ -113,6 +115,17 @@ It seems that a high number of steps can be detrimental  to the final quality, b
 #### 🤗 Diffuser Img2Img Pipeline
   - you can create something with the  composition you are looking for
   - you can use the output of a previous result as input
+
+
+::: {#fig-img2img layout-ncol=2}
+
+![sketch](sketchWolf.png){#fig-sketch}
+
+![photo](photoWolf.png){#fig-photo}
+
+From @fig-sketch to @fig-photo using the img2img pipeline.
+:::
+
 
 #### Fine tunning 🤗 Diffuser model
 - textual inversion: you actually fine tune a single embedding. 
