@@ -19,3 +19,8 @@ website:
           - section: 2022-10-11
             contents:
               - posts/2022-10-11/index.qmd
+      - section: posts
+        contents:
+          - section: 2022-10-14
+            contents:
+              - posts/2022-10-14/index.qmd

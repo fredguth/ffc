@@ -1,0 +1,14 @@
+---
+title: "Practical Deep Learning For Coders 2022, Lesson 9A"
+description: "Stable Diffusion Deep Dive"
+date: "2022-10-11"
+image: jeremy-dirac.png
+image-alt: "Jeremy Howard in the style of Paul Dirac."
+categories:
+  - stable diffusion
+  - lesson notes
+  - fastai
+  - deep dive
+  - Johnathan Whitaker
+draft: false
+---

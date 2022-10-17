@@ -7,7 +7,7 @@ format:
       - cosmo
       - custom.scss
     css: styles.css
-    page-layout: full
+    page-layout: article
 website:
   title: "Fred's Fast.ai Cookbook"
   twitter-card: true

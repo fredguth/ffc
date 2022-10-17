@@ -11,12 +11,13 @@ categories:
 draft: false
 ---
 
-- video/audio problems in the beginning, really starts at [6:54]
+## Course Logistics
 
-## Course Logistics [6:54]
 :::{.callout-warning}
 Remember not share links to course recordings or materials.
+
 :::
+
 - You can share your notes/learnings, but please don't share links to course recordings or materials.
 - Resources Needed:
 -- Colab pricing has gone crazy, now is not a bad time to buy a GPU.
@@ -33,9 +34,19 @@ Remember not share links to course recordings or materials.
   - another suggestion was [Radek's](https://forums.fast.ai/u/seem) [Meta Learning](https://radekosmulski.com/meta-learning-introduction/) book
 - There will be always little bit of logistics talk before the recording of each lesson. The official recording starts when slide with title appears.
 - [Study groups](https://forums.fast.ai/t/all-the-study-groups/) make learning more fun
--- The [SF Study Group](https://forums.fast.ai/t/study-groups-in-sf/) is the one running longer
+  - The [SF Study Group](https://forums.fast.ai/t/study-groups-in-sf/) is the one running longer
 
-## Introduction [20:58]
+
+
+## Introduction  [00:00]
+
+::: {.column-margin}
+![](jeremy_dwarf.jpg)
+
+Stable Diffusion example with Jeremy Howard as a dwarf ([tweet](https://twitter.com/jeremyphoward/status/1579244598446039040/photo/1)) via  [Astraea/strmr](https://www.strmr.com/examples) service: built by Fastai alumni on top of [DreamBooth](https://dreambooth.github.io/)
+
+:::
+
 - First lesson of part 2: "Deep learning Foundations to Stable Diffusion"
 - (Im)practical: we will a learn a lot of details that are not really necessary for using, but will be important for research.
 - We will do a quick run on how to use **Stable Diffusion**
@@ -44,11 +55,6 @@ Remember not share links to course recordings or materials.
   - Even as of recording, the Lesson Notebook is a little bit outdated.
   - But don't worry, the foundations don't change so much.
 
-::: {.column-margin}
-![](jeremy_dwarf.jpg)
-
-Stable Diffusion example with Jeremy Howard as a dwarf ([tweet](https://twitter.com/jeremyphoward/status/1579244598446039040/photo/1)) via  [Astraea/strmr](https://www.strmr.com/examples) service: built by Fastai alumni on top of [DreamBooth](https://dreambooth.github.io/)
-:::
 
 
 #### What has changed from previous courses
@@ -66,10 +72,11 @@ Part 2 requires more compute. Check options in course.fast.ai:
  - [Paperspace](https://www.paperspace.com/gradient) Gradient 
  - [Jarvis](https://jarvis-labs.xyz/) Labs: made by fastai alumni and loved by many students
  - [Lambda](https://lambdalabs.com/) Labs is the most recent provider. They are the cheapeast (at the moment)
- - GPU prices are going down
+ - GPU prices are going down 
 
 
-## Play with Stable Diffusion! [37:30]
+## Play with Stable Diffusion! [16:30]
+
 -  [fastai/diffusion-nbs](https://github.com/fastai/diffusion-nbs)
   - references to tools and cool stuff
 - **Play a lot!** It is important to play and learn the capabilities and limitations
@@ -78,7 +85,7 @@ Part 2 requires more compute. Check options in course.fast.ai:
 - The best way to learn about prompts is (Lexica.art)[lexica.art]
 - By the end of this course we will understand how prompts work and go beyond with new data types
 
-## How to get started with Stable Diffusion [42:00]
+## How to get started with Stable Diffusion [21:00]
 > Using 🤗 Huggingface Diffusers
 
 - [Notebook](https://github.com/fastai/diffusion-nbs/blob/master/stable_diffusion.ipynb) 
@@ -135,27 +142,83 @@ From @fig-sketch to @fig-photo using the img2img pipeline.
 - Dreambooth
     -  takes a not so used token and finetune just this token
 
-## How it works
+## How Stable Diffusion works
 - We will use a different explanation to what is commonly explained
+  - it is equally mathematically valid
+1. Start by imagining we want Stable Diffusion to generate something simpler, like handwritten digits
+2. Assume there is a black box that takes an image of a handwritten digit and returns the probability that this image is a handwritten digit
+3. We can use this black box to generate a new image (of a handwritten digit)
+  - we start with one of the input pixels. Let's say it is a 28x28 image, 784 pixels.
+    - we take one pixel of the image, change it (make it darker or lighter) and see what happens to the probability of the image being a handwritten digit
+    - we could do this by each pixel....
+  - $\frac{\nabla p(X_3)}{\nabla X_3} \leftarrow 784 \text{ values}$ : the gradient of the probability of the image being a handwritten digit with respect to the pixels of  $X_3$
+    - the values show us how we can change $X_3$ to increase the probability
+    - we will do something similar to what we did with weights of a model, but with the input pixels
+    - we will than apply some constant value (like a learning rate) to the gradient and add it to the image   
+    - we repeat this process many times
+4. Assume that `f` has a `f.backward()` which give us the gradient directly:
+  - we don't particularly need the calculation of the probabilities
+5. Now, how to create `f`.  Use a neural network for that:
+  - we can use a dataset of hadwritten digits and input random noise on them (to any ammount wanted)
+  - we want the neural net to predict the noise that was added to the handwritten image
+  - we are going to think about neural nets as just a black box of inputs, outputs and a loss function
+    - the inputs and outputs applied to the loss function changes the weights of the model
+  - we are building a neural network that predicts the noise
+6. We already know how to do it (Part 1 of the course)
+  - we are done, because
+7. With such neural net `f`, we can input a raindom noise and get the gradient that tells us how to change it to make it more likely to be a handwritten digit
+  - for this nnet, we use a Unet
+  - the input is a somewhat noisy image
+  - the output is the noise that was added to the image
 
-- Imagine a magic api `f``...
-- img X_1-> `f` -> p_isDigit(X_1)=0.98
-- img X_2-> `f` -> p_isDigit(X_2)=0.4
-- img X_2-> `f` -> p_isDigit(X_2)=0.02
-
-- if you have this magic api, you can use it to create images.
-- if we change a pixel, what is the probability now? 
-- we calculated the gradient of the probability of X_3 being a hand written digit:
-$\frac{\Lambda p_{\text{isDigit}}(X_3)}{\Lambda X_3}$
-- instead of using the gradient to change the model, we are changing the input
--- pixel by pixel is the finite differencing -> very slow
--- instead, we could just use `f.backward()` and get X_3.grad
+|               |         Input          |    Output   |
+|---------------|:-----------------------|------------:|
+| Unet          | somewhat noisy images  | the noise   |
 
 
-```{mermaid}
-flowchart LR
-  A(Watch lecture) --> B(Run lesson notebook)
-  B --> C(Reproduce results)
-  C --Different dataset--> C
-```
+8. The problem we have is that a 512 x 512 x 3 image is too big (786,432 pixels)
+  - training this model of changing this images is too slow
+  - how to do it more efficiently? We know there is way to compress images (like JPEG)
+  - a way to do it is to use a neural network to compress the image
+  - we can then train our Unet with the compressed version of our images
 
+|               |         Input          |    Output   |
+|---------------|:-----------------------|------------:|
+| Unet          | somewhat noisy latents | the noise   |
+| VAE's decoder | small latents tensor   | large image |
+
+9. We use our Unet with somewhat noisy latents and output the noise that was added to the latent. Then we use the decoder to get the resulting image
+
+10. But that was not what we was doing in the beginning, we used `prompts` to tell what we wanted to generate
+  - what if we  add to the noisy input of the unet the number we want to generate? add a one hot encode of the possible digits.
+  - now our unet will outputs what are the pixels the need to change to create the specific handwritten digit we want to build
+  - the digit we want to produce works like guidance to the model
+:idea: why not adding inputs that our not only the description of the image we want, but also some classification of style, or action to images (composition, etc)?
+
+11. Back to the original problem, how can we generate an image from a prompt like "a cyte teddy"?
+- we cannot one hot encode all possible descriptions
+- we need an encoding that kind of represent the image we want (the prompt)
+- for that we get millions of images from the internet with their alt text descriptions 
+- we can than create a model that is a text encoder
+- we pair the output of the text encoder with the output of the image encoder (using the dot product)
+- we build a model that correlates those two encodings
+- we have built a multimodal model for generating encodings
+- that is what we will use instead of one hot encodings
+- the model that is used here is named CLIP
+- where similar text descriptions give us similar embeddings
+
+
+
+|               |         Input          |    Output   |
+|---------------|:-----------------------|------------:|
+| Unet          | somewhat noisy latents | the noise   |
+| VAE's decoder | small latents tensor   | large image |
+| CLIP          | text description       | embedding   |
+
+12. The last we need is how to inference
+- we will avoid use the term "time steps"
+
+## Next lesson
+
+- looking inside the pipeline
+- then a huge rewind through the foundations
