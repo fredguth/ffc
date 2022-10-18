@@ -20,8 +20,8 @@ website:
     background: "#fcf9ef"
     search: false
     left:
-      - text: "Dissertation"
-        href: dissertation/intro.qmd
+      # - text: "Dissertation"
+      #   href: dissertation/intro.qmd
       - text: "Blog"
         href: blog.qmd
     right:

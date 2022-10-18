@@ -1,6 +1,6 @@
 ---
 title: "Practical Deep Learning For Coders 2022, Lesson 9"
-description: "The start of our Stable Diffusion saga"
+description: "The start of our Stable Diffusion saga."
 date: "2022-10-11"
 image: jeremy-dirac.png
 image-alt: "Jeremy Howard in the style of Paul Dirac."
@@ -14,7 +14,7 @@ draft: false
 ## Course Logistics
 
 :::{.callout-warning}
-Remember not share links to course recordings or materials.
+Remember not to share links to course recordings or materials.
 
 :::
 
@@ -22,35 +22,29 @@ Remember not share links to course recordings or materials.
 - Resources Needed:
 -- Colab pricing has gone crazy, now is not a bad time to buy a GPU.
 -- [Lambda is offering $150 in GPU time](https://forums.fast.ai/t/lambda-gpu-cloud-for-deep-learning-a100s-at-1-10-gpu-hr-150-sign-up-credit).  The challenge is that you cannot pause a lambda instance.
--- For part 2, you may need 16Gb to 24Gb of GPU VRAM for training, 8Gb for inference.
-- Check you are tracking [Lesson 9 official topic](https://forums.fast.ai/t/lesson-9-official-topic) (end of the page). The "chat" is the official source of information for the lesson.
+-- For part 2, you may need 16Gb to 24Gb of GPU VRAM for training and 8Gb for inference.
+- Check you are tracking [Lesson 9 official topic](https://forums.fast.ai/t/lesson-9-official-topic) (end of the page).  The "chat" is the official source of information for the lesson.
 - There is a Google [calendar](https://calendar.google.com/calendar/u/0?cid=Y18wNzdlY2I2MWVjMmRlOGI5MzE3ZGE2NmQxNmM1NTIwNDEwODRkNDFkZjllMTU0ZTZiNzAyNjgwMGYxNzQyNzU5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20) for lessons
-- Lesson 9 is divided in 3 parts (links in [Lesson 9 official topic](https://forums.fast.ai/t/lesson-9-official-topic)):
+- Lesson 9 is divided into 3 parts (links in [Lesson 9 official topic](https://forums.fast.ai/t/lesson-9-official-topic)):
   - This stream
   - Lesson 9A from [Jonathan Whitaker (@johnowhitaker)](https://forums.fast.ai/u/johnowhitaker/): A deeper dive on the subject
   - Lesson 9B from [Tanishq (@ilovescience)](https://forums.fast.ai/u/ilovescience) and [Wasim (@seem)](https://forums.fast.ai/u/seem): About the math. *To be released*. 
 - diffusion-nbs repo: things to start to play with stable diffusion
-- It is recommended to take a look on the [background links](https://forums.fast.ai/t/lesson-9-official-topic/100562/2#useful-background-on-fastai-courses-3)
+- It is recommended to take a look at the [background links](https://forums.fast.ai/t/lesson-9-official-topic/100562/2#useful-background-on-fastai-courses-3)
   - another suggestion was [Radek's](https://forums.fast.ai/u/seem) [Meta Learning](https://radekosmulski.com/meta-learning-introduction/) book
-- There will be always little bit of logistics talk before the recording of each lesson. The official recording starts when slide with title appears.
+- There will always be a little bit of logistics talk before the recording of each lesson. The official recording starts when slide with title appears.
 - [Study groups](https://forums.fast.ai/t/all-the-study-groups/) make learning more fun
   - The [SF Study Group](https://forums.fast.ai/t/study-groups-in-sf/) is the one running longer
 
 
-
 ## Introduction  [00:00]
 
-::: {.column-margin}
-![](jeremy_dwarf.jpg)
+![Stable Diffusion example with Jeremy Howard as a dwarf ([tweet](https://twitter.com/jeremyphoward/status/1579244598446039040/photo/1)) via  [Astraea/strmr](https://www.strmr.com/examples)](jeremy_dwarf.jpg){.column-margin}
 
-Stable Diffusion example with Jeremy Howard as a dwarf ([tweet](https://twitter.com/jeremyphoward/status/1579244598446039040/photo/1)) via  [Astraea/strmr](https://www.strmr.com/examples) service: built by Fastai alumni on top of [DreamBooth](https://dreambooth.github.io/)
-
-:::
-
-- First lesson of part 2: "Deep learning Foundations to Stable Diffusion"
-- (Im)practical: we will a learn a lot of details that are not really necessary for using, but will be important for research.
+- First lesson of part 2: "Deep learning Foundations to Stable Diffusion."
+- (Im)practical: we will learn a lot of details that are not necessary for use but will be essential for research.
 - We will do a quick run on how to use **Stable Diffusion**
-- If you haven't done DL before, will be hard. Strongly suggest doing [Part 1](https://forums.fast.ai/t/lesson-1-official-topic/) before this part.
+- If you haven't done DL before, it will be hard. Strongly suggest doing [Part 1](https://forums.fast.ai/t/lesson-1-official-topic/) before this part.
 - Stable diffusion is moving quickly. 
   - Even as of recording, the Lesson Notebook is a little bit outdated.
   - But don't worry, the foundations don't change so much.
@@ -58,20 +52,20 @@ Stable Diffusion example with Jeremy Howard as a dwarf ([tweet](https://twitter.
 
 
 #### What has changed from previous courses
-- No longer all centered in Jeremy
-- influenced by Fast.ai alumini
+- No longer all centred in Jeremy
+- influenced by Fast.ai alumni
   - [Jonathan Whitaker (@johnowhitaker)]: first to create educational material
   - [Wasim Lorgat (@seem)](https://forums.fast.ai/u/seem): extraordinary fastai contributor
   - [Pedro Cuenca (@pcuenq)](https://forums.fast.ai/u/pcuenq/): came to SF last course and it is now at [HuggingFace](https://huggingface.co/)
   - [Tanishq (@ilovescience)](https://forums.fast.ai/u/ilovescience): now at stability.ai, expertise on medical applications
 
 #### Compute
-Part 2 requires more compute. Check options in course.fast.ai:
+Part 2 requires more computing. Check options in course.fast.ai:
 
- - [Colab](https://colab.research.google.com/) is still good, but is getting pricier
+ - [Colab](https://colab.research.google.com/) is still good but is getting pricier
  - [Paperspace](https://www.paperspace.com/gradient) Gradient 
  - [Jarvis](https://jarvis-labs.xyz/) Labs: made by fastai alumni and loved by many students
- - [Lambda](https://lambdalabs.com/) Labs is the most recent provider. They are the cheapeast (at the moment)
+ - [Lambda](https://lambdalabs.com/) Labs is the most recent provider. They are the cheapest (at the moment)
  - GPU prices are going down 
 
 
@@ -80,18 +74,18 @@ Part 2 requires more compute. Check options in course.fast.ai:
 -  [fastai/diffusion-nbs](https://github.com/fastai/diffusion-nbs)
   - references to tools and cool stuff
 - **Play a lot!** It is important to play and learn the capabilities and limitations
-- the community has moved towards keeping code available as colab notebooks
+- the community has moved towards keeping code available as  `colab` `notebooks
   - example: [Deforum](https://deforum.github.io/)
 - The best way to learn about prompts is (Lexica.art)[lexica.art]
-- By the end of this course we will understand how prompts work and go beyond with new data types
+- By the end of this course, we will understand how prompts work and go beyond with new data types
 
 ## How to get started with Stable Diffusion [21:00]
 > Using 🤗 Huggingface Diffusers
 
 - [Notebook](https://github.com/fastai/diffusion-nbs/blob/master/stable_diffusion.ipynb) 
 - [Diffusers](https://github.com/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb) is [HuggingFace](huggingface.co) library for Stable Diffusion
-  - at the moment the recommended library
-  - HF 🤗 has doing a great good job on being pionneers
+  - at the moment, the recommended library
+  - HF 🤗 has done a great good job of being pioneers
   - HF pipeline is similar to fastai learn
 ``` python
 torch.manual_seed(1024)
@@ -99,7 +93,7 @@ num_rows,num_cols = 5,5
 pipe.safety_checker = lambda images, clip_input: (images, False)
 images = concat(pipe(prompt="a photograph of an astronaut riding a horse", num_inference_steps=s, guidance_scale=7).images for s in  list(range(2,100,4)))
 ```
-![Image output of the inference with different number of steps (from 2 to 98 steps, increasing 4 steps per image).](5x5.png){#fig-5x5 width=90%}
+![Image output of the inference with a different number of steps (from 2 to 98 steps, increasing 4 steps per image).](5x5.png){#fig-5x5 width=90%}
 
 - inference is quite different to what we have been used to in fastai
   - usage of prompts, guidance scale, etc
@@ -108,7 +102,7 @@ images = concat(pipe(prompt="a photograph of an astronaut riding a horse", num_i
 
 :::{.callout-tip}
 ## Fred's observations
-It seems that a high number of steps can be detrimental  to the final quality, but this hunch needs more experimentation
+Many steps can be detrimental to the final quality, but this hunch needs more experimentation.
 :::
 
 -  guidance scale says to what degree we should be focusing on the caption (prompt)
@@ -116,10 +110,10 @@ It seems that a high number of steps can be detrimental  to the final quality, b
 
 ![Image output of the inference with different number degrees in the guidance scale for each row.](4x4.png){#fig-4x4 width=70%}
 
-- negative_prompt: will take the prompt and create a second image that respond to the negative_prompt and subtract from the first one
+- [33:20] negative_prompt: will take the prompt and create a second image that responds to the negative_prompt and subtract from the first one
 
 
-#### 🤗 Diffuser Img2Img Pipeline
+#### 🤗 Diffuser Img2Img Pipeline [34:30]
   - you can create something with the  composition you are looking for
   - you can use the output of a previous result as input
 
@@ -135,41 +129,56 @@ From @fig-sketch to @fig-photo using the img2img pipeline.
 
 
 #### Fine tunning 🤗 Diffuser model
-- textual inversion: you actually fine tune a single embedding. 
+- textual inversion: you fine tune a single embedding. 
     - give the concept a name (token)
-    - give the example pictures this token and add to the model
+    - give example pictures of this token and add them to the model
 
-- Dreambooth
-    -  takes a not so used token and finetune just this token
+- Dreambooth [41:15]
+    -  takes a not-so-used token and finetunes just this token
 
-## How Stable Diffusion works
+## How Stable Diffusion works [44:55]
 - We will use a different explanation to what is commonly explained
   - it is equally mathematically valid
-1. Start by imagining we want Stable Diffusion to generate something simpler, like handwritten digits
-2. Assume there is a black box that takes an image of a handwritten digit and returns the probability that this image is a handwritten digit
-3. We can use this black box to generate a new image (of a handwritten digit)
+- Start by imagining we want Stable Diffusion to generate something simpler, like handwritten digits
+
+
+1.  Assume there is a black box that takes an image of a handwritten digit and returns the probability that this image is a handwritten digit
+
+![Our black box `f`](blackbox.png){#fig-blackbox width=40%}
+
+2. We can use this black box to generate a new image (of a handwritten digit)
   - we start with one of the input pixels. Let's say it is a 28x28 image, 784 pixels.
-    - we take one pixel of the image, change it (make it darker or lighter) and see what happens to the probability of the image being a handwritten digit
-    - we could do this by each pixel....
-  - $\frac{\nabla p(X_3)}{\nabla X_3} \leftarrow 784 \text{ values}$ : the gradient of the probability of the image being a handwritten digit with respect to the pixels of  $X_3$
-    - the values show us how we can change $X_3$ to increase the probability
-    - we will do something similar to what we did with weights of a model, but with the input pixels
-    - we will than apply some constant value (like a learning rate) to the gradient and add it to the image   
-    - we repeat this process many times
-4. Assume that `f` has a `f.backward()` which give us the gradient directly:
+  - we take one pixel of the image, change it (make it darker or lighter) and see what happens to the probability of the image being a handwritten digit
+  
+  ![Changing one pixel and analysing the change to the probability](changingpixels.png){#fig-changingpixels width=30%}
+
+  - we could do this by each pixel.... but
+ 3. Take $\frac{\nabla p(X_3)}{\nabla X_3} \leftarrow 784 \text{ values}$ : the gradient of the probability of the image being a handwritten digit with respect to the pixels of  $X_3$
+  - the values show us how we can change $X_3$ to increase the probability
+  - we will do something similar to what we did with the weights of a model, but with the input pixels
+  
+  ![The gradient points to the changes needed to the input to make it closer to a handwritten digit](workflow.png){#fig-workflow width=40%} 
+  
+  - we will then apply some constant value (like a learning rate) to the gradient and add it to the image   
+  - we repeat this process many times
+
+  
+4. Assume that `f` has a `f.backward()` which gives us the gradient directly:
   - we don't particularly need the calculation of the probabilities
-5. Now, how to create `f`.  Use a neural network for that:
-  - we can use a dataset of hadwritten digits and input random noise on them (to any ammount wanted)
+5. Now, how to create `f`?  Use a neural network for that:
+  - we can use a dataset of handwritten digits and input random noise on them (to any amount wanted)
   - we want the neural net to predict the noise that was added to the handwritten image
   - we are going to think about neural nets as just a black box of inputs, outputs and a loss function
     - the inputs and outputs applied to the loss function changes the weights of the model
   - we are building a neural network that predicts the noise
 6. We already know how to do it (Part 1 of the course)
-  - we are done, because
-7. With such neural net `f`, we can input a raindom noise and get the gradient that tells us how to change it to make it more likely to be a handwritten digit
+  - we are done.... because
+7. With such neural net `f`, we can input a random noise and get the gradient that tells us how to change it to make it more likely to be a handwritten digit
   - for this nnet, we use a Unet
   - the input is a somewhat noisy image
-  - the output is the noise that was added to the image
+  - the output is the noise added to the image
+ 
+ ![Using a model to identify noise in input images.](unet.png){#fig-unet width=90%} 
 
 
 |               |         Input          |    Output   |
@@ -177,12 +186,13 @@ From @fig-sketch to @fig-photo using the img2img pipeline.
 | Unet          | somewhat noisy images  | the noise   |
 
 
-
-8. The problem we have is that a 512 x 512 x 3 image is too big (786,432 pixels)
-  - training this model of changing this images is too slow
-  - how to do it more efficiently? We know there is way to compress images (like JPEG)
+8. The problem we have is that (besides handwritten digits generation) we want to generate 512 x 512 x 3 images which are too big (786,432 pixels)
+  - training this model by changing images pixel-by-pixel too slow
+  - how to do it more efficiently? We know there is a way to compress images (like JPEG)
   - a way to do it is to use a neural network to compress the image
   - we can then train our Unet with the compressed version of our images
+
+![Auto encoder.](autoencoder.jpg){#fig-autoencoder width=50%} 
 
 |               |         Input          |    Output   |
 |---------------|:-----------------------|------------:|
@@ -191,24 +201,36 @@ From @fig-sketch to @fig-photo using the img2img pipeline.
 
 9. We use our Unet with somewhat noisy latents and output the noise that was added to the latent. Then we use the decoder to get the resulting image
 
-10. But that was not what we was doing in the beginning, we used `prompts` to tell what we wanted to generate
-  - what if we  add to the noisy input of the unet the number we want to generate? add a one hot encode of the possible digits.
-  - now our unet will outputs what are the pixels the need to change to create the specific handwritten digit we want to build
+10. But that was not what we were doing in the beginning; we used `prompts` to tell what we wanted to generate
+  - what if we add to the noisy input of the unet the number we want to generate? Add a one-hot-encoding of the possible digits.
+  - now our unet will output what are the pixels need to change to create the specific handwritten digit we want to build
   - the digit we want to produce works like guidance to the model
-:idea: why not adding inputs that our not only the description of the image we want, but also some classification of style, or action to images (composition, etc)?
 
-11. Back to the original problem, how can we generate an image from a prompt like "a cyte teddy"?
-- we cannot one hot encode all possible descriptions
-- we need an encoding that kind of represent the image we want (the prompt)
-- for that we get millions of images from the internet with their alt text descriptions 
-- we can than create a model that is a text encoder
+::: {.column-margin}
+
+![Guidance](guidance.jpg){#fig-guidance}
+
+:::
+
+:::{.callout-tip}
+## Fred's observation
+why not add inputs that are not only the description of the image we want but also some classification of style (as an embedding) or action to images (composition, etc)?
+
+:::
+
+11. Back to the original problem, how can we generate an image from a prompt like "a cute teddy"?
+- we cannot one-hot-encode all possible descriptions
+- we need an encoding that represent the image we want (the prompt)
+- for that, we get millions of images from the internet with their alt text descriptions 
+- we can then create a model that is a `textencoder`
 - we pair the output of the text encoder with the output of the image encoder (using the dot product)
 - we build a model that correlates those two encodings
 - we have built a multimodal model for generating encodings
-- that is what we will use instead of one hot encodings
+- that is what we will use instead of one-hot-encodings
 - the model that is used here is named CLIP
 - where similar text descriptions give us similar embeddings
 
+![TextEncoding x ImageEncoding](textencodingximageencoding.jpg){#fig-encodings width=70%}
 
 
 |               |         Input          |    Output   |
