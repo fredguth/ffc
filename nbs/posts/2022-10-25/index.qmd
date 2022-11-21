@@ -1,0 +1,31 @@
+- no much logistics
+- shout outs:
+    - explaining @sebderhy ideas on guidance (normalization)
+    - bugs can be beneficial :-D
+    - students rebounding ideas from each other --- great!
+    - @jeremeyhoward with difficulty to keep up
+    - @strickvl study method
+    - @_akhaliq at Twitter finds interesting papers
+- DiffEdit: reading paper together
+    - peer review in Twitter
+    - workflow
+        - add paper to zotero
+        - read in zotero
+            - see outline
+            - read abstract -- new task, looks amazing
+            - inpainting by copy-pasting pixel values outside a user-given mask
+            - background is often the scariest part
+                - often written last and made to impress reviewers
+            - mathpix
+            - download latex of the paper in arxiv
+
+- course22p2/nbs/01_matmul.ipynb
+
+For the week:
+- read @strickvl method, try to follow this week
+- revisit lesson 10
+- try to implement DiffEdit 
+
+
+
+
