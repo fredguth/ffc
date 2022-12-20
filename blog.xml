@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>ffc</title>
+<link>https://fredguth.github.io/ffc/blog.html</link>
+<atom:link href="https://fredguth.github.io/ffc/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Fred&#39;s fast.ai cookbook</description>
+<generator>quarto-1.2.280</generator>
+<lastBuildDate>Tue, 11 Oct 2022 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Practical Deep Learning For Coders 2022, Lesson 9</title>
+  <link>https://fredguth.github.io/ffc/posts/2022-10-11/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="course-logistics" class="level2">
+<h2 class="anchored" data-anchor-id="course-logistics">Course Logistics</h2>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember not to share links to course recordings or materials.</p>
+</div>
+</div>
+<ul>
+<li>You can share your notes/learnings, but please don’t share links to course recordings or materials.</li>
+<li>Resources Needed: – Colab pricing has gone crazy, now is not a bad time to buy a GPU. – <a href="https://forums.fast.ai/t/lambda-gpu-cloud-for-deep-learning-a100s-at-1-10-gpu-hr-150-sign-up-credit">Lambda is offering $150 in GPU time</a>. The challenge is that you cannot pause a lambda instance. – For part 2, you may need 16Gb to 24Gb of GPU VRAM for training and 8Gb for inference.</li>
+<li>Check you are tracking <a href="https://forums.fast.ai/t/lesson-9-official-topic">Lesson 9 official topic</a> (end of the page). The “chat” is the official source of information for the lesson.</li>
+<li>There is a Google <a href="https://calendar.google.com/calendar/u/0?cid=Y18wNzdlY2I2MWVjMmRlOGI5MzE3ZGE2NmQxNmM1NTIwNDEwODRkNDFkZjllMTU0ZTZiNzAyNjgwMGYxNzQyNzU5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">calendar</a> for lessons</li>
+<li>Lesson 9 is divided into 3 parts (links in <a href="https://forums.fast.ai/t/lesson-9-official-topic">Lesson 9 official topic</a>):
+<ul>
+<li>This stream</li>
+<li>Lesson 9A from <a href="https://forums.fast.ai/u/johnowhitaker/">Jonathan Whitaker (<span class="citation" data-cites="johnowhitaker">@johnowhitaker</span>)</a>: A deeper dive on the subject</li>
+<li>Lesson 9B from <a href="https://forums.fast.ai/u/ilovescience">Tanishq (<span class="citation" data-cites="ilovescience">@ilovescience</span>)</a> and <a href="https://forums.fast.ai/u/seem">Wasim (<span class="citation" data-cites="seem">@seem</span>)</a>: About the math. <em>To be released</em>.</li>
+</ul></li>
+<li>diffusion-nbs repo: things to start to play with stable diffusion</li>
+<li>It is recommended to take a look at the <a href="https://forums.fast.ai/t/lesson-9-official-topic/100562/2#useful-background-on-fastai-courses-3">background links</a>
+<ul>
+<li>another suggestion was <a href="https://forums.fast.ai/u/seem">Radek’s</a> <a href="https://radekosmulski.com/meta-learning-introduction/">Meta Learning</a> book</li>
+</ul></li>
+<li>There will always be a little bit of logistics talk before the recording of each lesson. The official recording starts when slide with title appears.</li>
+<li><a href="https://forums.fast.ai/t/all-the-study-groups/">Study groups</a> make learning more fun
+<ul>
+<li>The <a href="https://forums.fast.ai/t/study-groups-in-sf/">SF Study Group</a> is the one running longer</li>
+</ul></li>
+</ul>
+</section>
+<section id="introduction-0000" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="introduction-0000">Introduction [00:00]</h2>
+
+<div class="no-row-height column-margin column-container"><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/jeremy_dwarf.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Stable Diffusion example with Jeremy Howard as a dwarf (<a href="https://twitter.com/jeremyphoward/status/1579244598446039040/photo/1">tweet</a>) via <a href="https://www.strmr.com/examples">Astraea/strmr</a></figcaption><p></p>
+</figure>
+</div></div><ul>
+<li>First lesson of part 2: “Deep learning Foundations to Stable Diffusion.”</li>
+<li>(Im)practical: we will learn a lot of details that are not necessary for use but will be essential for research.</li>
+<li>We will do a quick run on how to use <strong>Stable Diffusion</strong></li>
+<li>If you haven’t done DL before, it will be hard. Strongly suggest doing <a href="https://forums.fast.ai/t/lesson-1-official-topic/">Part 1</a> before this part.</li>
+<li>Stable diffusion is moving quickly.
+<ul>
+<li>Even as of recording, the Lesson Notebook is a little bit outdated.</li>
+<li>But don’t worry, the foundations don’t change so much.</li>
+</ul></li>
+</ul>
+<section id="what-has-changed-from-previous-courses" class="level4">
+<h4 class="anchored" data-anchor-id="what-has-changed-from-previous-courses">What has changed from previous courses</h4>
+<ul>
+<li>No longer all centred in Jeremy</li>
+<li>influenced by Fast.ai alumni
+<ul>
+<li><span class="citation" data-cites="johnowhitaker">[Jonathan Whitaker (@johnowhitaker)]</span>: first to create educational material</li>
+<li><a href="https://forums.fast.ai/u/seem">Wasim Lorgat (<span class="citation" data-cites="seem">@seem</span>)</a>: extraordinary fastai contributor</li>
+<li><a href="https://forums.fast.ai/u/pcuenq/">Pedro Cuenca (<span class="citation" data-cites="pcuenq">@pcuenq</span>)</a>: came to SF last course and it is now at <a href="https://huggingface.co/">HuggingFace</a></li>
+<li><a href="https://forums.fast.ai/u/ilovescience">Tanishq (<span class="citation" data-cites="ilovescience">@ilovescience</span>)</a>: now at stability.ai, expertise on medical applications</li>
+</ul></li>
+</ul>
+</section>
+<section id="compute" class="level4">
+<h4 class="anchored" data-anchor-id="compute">Compute</h4>
+<p>Part 2 requires more computing. Check options in course.fast.ai:</p>
+<ul>
+<li><a href="https://colab.research.google.com/">Colab</a> is still good but is getting pricier</li>
+<li><a href="https://www.paperspace.com/gradient">Paperspace</a> Gradient</li>
+<li><a href="https://jarvis-labs.xyz/">Jarvis</a> Labs: made by fastai alumni and loved by many students</li>
+<li><a href="https://lambdalabs.com/">Lambda</a> Labs is the most recent provider. They are the cheapest (at the moment)</li>
+<li>GPU prices are going down</li>
+</ul>
+</section>
+</section>
+<section id="play-with-stable-diffusion-1630" class="level2">
+<h2 class="anchored" data-anchor-id="play-with-stable-diffusion-1630">Play with Stable Diffusion! [16:30]</h2>
+<ul>
+<li><a href="https://github.com/fastai/diffusion-nbs">fastai/diffusion-nbs</a></li>
+<li>references to tools and cool stuff</li>
+<li><strong>Play a lot!</strong> It is important to play and learn the capabilities and limitations</li>
+<li>the community has moved towards keeping code available as <code>colab</code> `notebooks
+<ul>
+<li>example: <a href="https://deforum.github.io/">Deforum</a></li>
+</ul></li>
+<li>The best way to learn about prompts is (Lexica.art)[lexica.art]</li>
+<li>By the end of this course, we will understand how prompts work and go beyond with new data types</li>
+</ul>
+</section>
+<section id="how-to-get-started-with-stable-diffusion-2100" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-get-started-with-stable-diffusion-2100">How to get started with Stable Diffusion [21:00]</h2>
+<blockquote class="blockquote">
+<p>Using 🤗 Huggingface Diffusers</p>
+</blockquote>
+<ul>
+<li><p><a href="https://github.com/fastai/diffusion-nbs/blob/master/stable_diffusion.ipynb">Notebook</a></p></li>
+<li><p><a href="https://github.com/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb">Diffusers</a> is <a href="huggingface.co">HuggingFace</a> library for Stable Diffusion</p>
+<ul>
+<li>at the moment, the recommended library</li>
+<li>HF 🤗 has done a great good job of being pioneers</li>
+<li>HF pipeline is similar to fastai learn</li>
+</ul>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">torch.manual_seed(<span class="dv" style="color: #AD0000;">1024</span>)</span>
+<span id="cb1-2">num_rows,num_cols <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">5</span>,<span class="dv" style="color: #AD0000;">5</span></span>
+<span id="cb1-3">pipe.safety_checker <span class="op" style="color: #5E5E5E;">=</span> <span class="kw" style="color: #003B4F;">lambda</span> images, clip_input: (images, <span class="va" style="color: #111111;">False</span>)</span>
+<span id="cb1-4">images <span class="op" style="color: #5E5E5E;">=</span> concat(pipe(prompt<span class="op" style="color: #5E5E5E;">=</span><span class="st" style="color: #20794D;">"a photograph of an astronaut riding a horse"</span>, num_inference_steps<span class="op" style="color: #5E5E5E;">=</span>s, guidance_scale<span class="op" style="color: #5E5E5E;">=</span><span class="dv" style="color: #AD0000;">7</span>).images <span class="cf" style="color: #003B4F;">for</span> s <span class="kw" style="color: #003B4F;">in</span>  <span class="bu" style="color: null;">list</span>(<span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">2</span>,<span class="dv" style="color: #AD0000;">100</span>,<span class="dv" style="color: #AD0000;">4</span>)))</span></code></pre></div>
+<div id="fig-5x5" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/5x5.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Image output of the inference with a different number of steps (from 2 to 98 steps, increasing 4 steps per image).</figcaption><p></p>
+</figure>
+</div></li>
+<li><p>inference is quite different to what we have been used to in fastai</p>
+<ul>
+<li>usage of prompts, guidance scale, etc</li>
+<li>these models require many steps</li>
+<li>research is reducing the number of steps, but good results still require many</li>
+</ul></li>
+</ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Fred’s observations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many steps can be detrimental to the final quality, but this hunch needs more experimentation.</p>
+</div>
+</div>
+<ul>
+<li>guidance scale says to what degree we should be focusing on the caption (prompt)</li>
+<li>JH has the feeling that there is something to be done in this <em>function</em></li>
+</ul>
+<div id="fig-4x4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/4x4.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Image output of the inference with different number degrees in the guidance scale for each row.</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>[33:20] negative_prompt: will take the prompt and create a second image that responds to the negative_prompt and subtract from the first one</li>
+</ul>
+<section id="diffuser-img2img-pipeline-3430" class="level4">
+<h4 class="anchored" data-anchor-id="diffuser-img2img-pipeline-3430">🤗 Diffuser Img2Img Pipeline [34:30]</h4>
+<ul>
+<li>you can create something with the composition you are looking for</li>
+<li>you can use the output of a previous result as input</li>
+</ul>
+<div id="fig-img2img" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-sketch" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/sketchWolf.png" class="img-fluid figure-img" data-ref-parent="fig-img2img"></p>
+<p></p><figcaption class="figure-caption">(a) sketch</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-photo" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/photoWolf.png" class="img-fluid figure-img" data-ref-parent="fig-img2img"></p>
+<p></p><figcaption class="figure-caption">(b) photo</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: From Figure&nbsp;3 (a) to Figure&nbsp;3 (b) using the img2img pipeline.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="fine-tunning-diffuser-model" class="level4">
+<h4 class="anchored" data-anchor-id="fine-tunning-diffuser-model">Fine tunning 🤗 Diffuser model</h4>
+<ul>
+<li>textual inversion: you fine tune a single embedding.
+<ul>
+<li>give the concept a name (token)</li>
+<li>give example pictures of this token and add them to the model</li>
+</ul></li>
+<li>Dreambooth [41:15]
+<ul>
+<li>takes a not-so-used token and finetunes just this token</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="how-stable-diffusion-works-4455" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="how-stable-diffusion-works-4455">How Stable Diffusion works [44:55]</h2>
+<ul>
+<li>We will use a different explanation to what is commonly explained
+<ul>
+<li>it is equally mathematically valid</li>
+</ul></li>
+<li>Start by imagining we want Stable Diffusion to generate something simpler, like handwritten digits</li>
+</ul>
+<ol type="1">
+<li>Assume there is a black box that takes an image of a handwritten digit and returns the probability that this image is a handwritten digit</li>
+</ol>
+<div id="fig-blackbox" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/blackbox.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Our black box <code>f</code></figcaption><p></p>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>We can use this black box to generate a new image (of a handwritten digit)</li>
+</ol>
+<ul>
+<li>we start with one of the input pixels. Let’s say it is a 28x28 image, 784 pixels.</li>
+<li>we take one pixel of the image, change it (make it darker or lighter) and see what happens to the probability of the image being a handwritten digit</li>
+</ul>
+<div id="fig-changingpixels" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/changingpixels.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Changing one pixel and analysing the change to the probability</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>we could do this by each pixel…. but</li>
+</ul>
+<ol start="3" type="1">
+<li>Take <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cnabla%20p(X_3)%7D%7B%5Cnabla%20X_3%7D%20%5Cleftarrow%20784%20%5Ctext%7B%20values%7D"> : the gradient of the probability of the image being a handwritten digit with respect to the pixels of <img src="https://latex.codecogs.com/png.latex?X_3"></li>
+</ol>
+<ul>
+<li>the values show us how we can change <img src="https://latex.codecogs.com/png.latex?X_3"> to increase the probability</li>
+<li>we will do something similar to what we did with the weights of a model, but with the input pixels</li>
+</ul>
+<div id="fig-workflow" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/workflow.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: The gradient points to the changes needed to the input to make it closer to a handwritten digit</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>we will then apply some constant value (like a learning rate) to the gradient and add it to the image<br>
+</li>
+<li>we repeat this process many times</li>
+</ul>
+<ol start="4" type="1">
+<li>Assume that <code>f</code> has a <code>f.backward()</code> which gives us the gradient directly:</li>
+</ol>
+<ul>
+<li>we don’t particularly need the calculation of the probabilities</li>
+</ul>
+<ol start="5" type="1">
+<li>Now, how to create <code>f</code>? Use a neural network for that:</li>
+</ol>
+<ul>
+<li>we can use a dataset of handwritten digits and input random noise on them (to any amount wanted)</li>
+<li>we want the neural net to predict the noise that was added to the handwritten image</li>
+<li>we are going to think about neural nets as just a black box of inputs, outputs and a loss function
+<ul>
+<li>the inputs and outputs applied to the loss function changes the weights of the model</li>
+</ul></li>
+<li>we are building a neural network that predicts the noise</li>
+</ul>
+<ol start="6" type="1">
+<li>We already know how to do it (Part 1 of the course)</li>
+</ol>
+<ul>
+<li>we are done…. because</li>
+</ul>
+<ol start="7" type="1">
+<li>With such neural net <code>f</code>, we can input a random noise and get the gradient that tells us how to change it to make it more likely to be a handwritten digit</li>
+</ol>
+<ul>
+<li>for this nnet, we use a Unet</li>
+<li>the input is a somewhat noisy image</li>
+<li>the output is the noise added to the image</li>
+</ul>
+<div id="fig-unet" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/unet.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: Using a model to identify noise in input images.</figcaption><p></p>
+</figure>
+</div>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Input</th>
+<th style="text-align: right;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unet</td>
+<td style="text-align: left;">somewhat noisy images</td>
+<td style="text-align: right;">the noise</td>
+</tr>
+</tbody>
+</table>
+<ol start="8" type="1">
+<li>The problem we have is that (besides handwritten digits generation) we want to generate 512 x 512 x 3 images which are too big (786,432 pixels)</li>
+</ol>
+<ul>
+<li>training this model by changing images pixel-by-pixel too slow</li>
+<li>how to do it more efficiently? We know there is a way to compress images (like JPEG)</li>
+<li>a way to do it is to use a neural network to compress the image</li>
+<li>we can then train our Unet with the compressed version of our images</li>
+</ul>
+<div id="fig-autoencoder" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/autoencoder.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Auto encoder.</figcaption><p></p>
+</figure>
+</div>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Input</th>
+<th style="text-align: right;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unet</td>
+<td style="text-align: left;">somewhat noisy latents</td>
+<td style="text-align: right;">the noise</td>
+</tr>
+<tr class="even">
+<td>VAE’s decoder</td>
+<td style="text-align: left;">small latents tensor</td>
+<td style="text-align: right;">large image</td>
+</tr>
+</tbody>
+</table>
+<ol start="9" type="1">
+<li><p>We use our Unet with somewhat noisy latents and output the noise that was added to the latent. Then we use the decoder to get the resulting image</p></li>
+<li><p>But that was not what we were doing in the beginning; we used <code>prompts</code> to tell what we wanted to generate</p></li>
+</ol>
+<ul>
+<li>what if we add to the noisy input of the unet the number we want to generate? Add a one-hot-encoding of the possible digits.</li>
+<li>now our unet will output what are the pixels need to change to create the specific handwritten digit we want to build</li>
+<li>the digit we want to produce works like guidance to the model</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div id="fig-guidance" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/guidance.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9: Guidance</figcaption><p></p>
+</figure>
+</div>
+</div></div><div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Fred’s observation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>why not add inputs that are not only the description of the image we want but also some classification of style (as an embedding) or action to images (composition, etc)?</p>
+</div>
+</div>
+<ol start="11" type="1">
+<li>Back to the original problem, how can we generate an image from a prompt like “a cute teddy”?</li>
+</ol>
+<ul>
+<li>we cannot one-hot-encode all possible descriptions</li>
+<li>we need an encoding that represent the image we want (the prompt)</li>
+<li>for that, we get millions of images from the internet with their alt text descriptions</li>
+<li>we can then create a model that is a <code>textencoder</code></li>
+<li>we pair the output of the text encoder with the output of the image encoder (using the dot product)</li>
+<li>we build a model that correlates those two encodings</li>
+<li>we have built a multimodal model for generating encodings</li>
+<li>that is what we will use instead of one-hot-encodings</li>
+<li>the model that is used here is named CLIP</li>
+<li>where similar text descriptions give us similar embeddings</li>
+</ul>
+<div id="fig-encodings" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-10-11/textencodingximageencoding.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10: TextEncoding x ImageEncoding</figcaption><p></p>
+</figure>
+</div>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Input</th>
+<th style="text-align: right;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unet</td>
+<td style="text-align: left;">somewhat noisy latents</td>
+<td style="text-align: right;">the noise</td>
+</tr>
+<tr class="even">
+<td>VAE’s decoder</td>
+<td style="text-align: left;">small latents tensor</td>
+<td style="text-align: right;">large image</td>
+</tr>
+<tr class="odd">
+<td>CLIP</td>
+<td style="text-align: left;">text description</td>
+<td style="text-align: right;">embedding</td>
+</tr>
+</tbody>
+</table>
+<ol start="12" type="1">
+<li>The last we need is how to inference</li>
+</ol>
+<ul>
+<li>we will avoid use the term “time steps”</li>
+</ul>
+</section>
+<section id="next-lesson" class="level2">
+<h2 class="anchored" data-anchor-id="next-lesson">Next lesson</h2>
+<ul>
+<li>looking inside the pipeline</li>
+<li>then a huge rewind through the foundations</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>stable diffusion</category>
+  <category>lesson notes</category>
+  <category>fastai</category>
+  <guid>https://fredguth.github.io/ffc/posts/2022-10-11/index.html</guid>
+  <pubDate>Tue, 11 Oct 2022 00:00:00 GMT</pubDate>
+  <media:content url="https://fredguth.github.io/ffc/posts/2022-10-11/jeremy-dirac.png" medium="image" type="image/png" height="147" width="144"/>
+</item>
+<item>
+  <title>Why I am writing a cookbook… and so should you</title>
+  <dc:creator>Fred Guth</dc:creator>
+  <link>https://fredguth.github.io/ffc/posts/2022-09-26/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>The <a href="https://course.fast.ai/">Practical Deep Learning for Coders</a> course has a top-down approach to teaching. Let’s <strong>not</strong> <em>start from the basics</em>, but from our goals. In the first lesson, you learn how to build a classifier that would be science fiction in 2015. Neat! Equally important, thought, is what is implicit: a requirement for a <a href="https://forums.fast.ai/t/learning-strategy-for-top-down-approach/66173">top-down approach to learning</a>:</p>
+
+<div class="no-row-height column-margin column-container"><div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+doc(<em>function</em>)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While running the lesson notebook, use <code>doc(fn)</code> to access the <em>function</em>’s documentation.</p>
+</div>
+</div></div><div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+  A(Watch lecture) --&gt; B(Run lesson notebook)
+  B --&gt; C(Reproduce results)
+  C --Different dataset--&gt; C
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<section id="what-is-a-fast.ai-cookbook" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-is-a-fast.ai-cookbook">What is a fast.ai cookbook?</h2>
+<p>A cookbook is a collection of recipes. A fastai recipe is a jupyter notebook where you compile steps that you can follow to reproduce a result using the library. But you do that in a literate programming style, <em>ie</em> you add explanations and annotations to the code.</p>
+
+<div class="no-row-height column-margin column-container"><div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+playground
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many fastai cookbooks use the name <code>playground</code>.</p>
+</div>
+</div></div><p>There are a list of some interesting fast.ai cookbooks in Github:</p>
+<ul>
+<li><a href="https://walkwithfastai.com/">Zachary Mueller’s cookbook</a></li>
+<li><a href="https://github.com/sgugger/Deep-Learning">Sylvain’s cookbook</a></li>
+<li><a href="https://github.com/fredguth/fastai_playground">Fred’s old cookbook</a></li>
+<li><a href="https://github.com/sunhwan/fastai-playground">Sunhwan’s cookbook</a></li>
+<li><a href="https://github.com/kechan/FastaiPlayground">Kechan’s cookbook</a></li>
+<li><del>Severus Snape’s cookbook</del></li>
+</ul>
+<div id="fig-halfblood" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://fredguth.github.io/ffc/posts/2022-09-26/halfbloodrecipes.webp" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: An annotated copy of Advanced Potion-Making book belonged to Severus Snape while a Hogwarts student.</figcaption><p></p>
+</figure>
+</div>
+<section id="why-build-a-cookbook" class="level3">
+<h3 class="anchored" data-anchor-id="why-build-a-cookbook">Why build a cookbook?</h3>
+<p>A cookbook enables reproducibility, but as important… it allows <em>you</em> to come back to your work in a few months and understand what you did. <strong>It is a gift for your future self.</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">flowchart LR
+  A(Watch lecture) --&gt; B(Run lesson notebook)
+  B --&gt; C(Reproduce)
+  C --Different dataset--&gt; C
+  C --&gt; D(Share learnings)
+  D:::someclass
+  classDef someclass fill:#f96;
+
+</pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p>Besides, when you share your learnings you need to structure your thought and that makes you check for gaps in your understanding and solidifies what you have learned.</p>
+</section>
+<section id="how-to-build-a-cookbook" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-build-a-cookbook">How to build a cookbook?</h3>
+<p>The best way to document your fastai learnings is using <a href="nbdev.fast.ai">nbdev</a>, which is the development tool used to build and document <code>fast.ai</code> lib itself. That is how this <code>Fred's fast.ai cookbook</code> was made. You can just fork <a href="https://github.com/fredguth/ffc">my repo</a> or follow the <a href="https://nbdev.fast.ai/tutorials/tutorial.html">nbdev tutorial</a> (that is what I did).</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>learning</category>
+  <category>hacks</category>
+  <guid>https://fredguth.github.io/ffc/posts/2022-09-26/index.html</guid>
+  <pubDate>Tue, 27 Sep 2022 00:00:00 GMT</pubDate>
+  <media:content url="https://fredguth.github.io/ffc/posts/2022-09-26/cookbook_anotation.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>
